@@ -11,6 +11,11 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
+import { VendasComponent } from './vendas/vendas.component';
+import { AutomovelComponent } from './vendas/automovel/automovel.component';
+import { ImoveisComponent } from './vendas/imoveis/imoveis.component';
+import { MateriaisComponent } from './vendas/materiais/materiais.component';
+import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component';
 
 @NgModule({
    declarations: [
@@ -18,7 +23,12 @@ import { HomeComponent } from './home/home.component';
       UserComponent,
       LoginComponent,
       NavComponent,
-      HomeComponent
+      HomeComponent,
+      VendasComponent,
+      AutomovelComponent,
+      ImoveisComponent,
+      MateriaisComponent,
+      VendasMenuComponent
    ],
    imports: [
       BrowserModule,

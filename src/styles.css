@@ -2,3 +2,5 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 @import '../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css';
+@import '../node_modules/@fullcalendar/core/main.css';
+@import '../node_modules/@fullcalendar/daygrid/main.css';
