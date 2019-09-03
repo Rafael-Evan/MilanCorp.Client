@@ -1,46 +1,31 @@
 <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div style="background-color: #051a4b" class="sidebar-heading">  <img src="assets/img/milanx_branco.png" height="30px" width="120px"></div>
+    <div *ngIf="loggedIn()" class="sidenav">
         <div class="text-center list-group list-group-flush">
             <b class="sidebar-brand">
-                <br>
                 <img src="assets/img/user_profile.png" width="60px" alt="">
                 <br>
                 <b><a style="color: rgb(27, 76, 133)" href="#">MEUS DADOS</a></b>
             </b>
             <br>
-            <b>
-                <b>ADMINISTRATIVO</b>
-            </b>
+            <b><a style="color: rgb(85, 97, 109)">ADMINISTRATIVO</a></b>
             <ul>
                 <li><a href="#">Reserva das Salas</a></li>
                 <li><a href="#">Eventos</a></li>
             </ul>
             <br>
-            <b>
-                <b>MEUS LEILÕES</b>
-            </b>
+            <b><a style="color: rgb(85, 97, 109)">MEUS LEILÕES</a></b>
             <ul>
-                <li><a href="#">Vendas</a></li>
+                <li><a routerLink="vendas/menu">Vendas</a></li>
                 <li><a href="#">Compras</a></li>
             </ul>
         </div>
     </div>
-    <!-- /#sidebar-wrapper -->
-
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
         <nav style="background-color: #051a4b" class="navbar navbar-expand-lg border-bottom">
-            <button class="btn btn-light" id="menu-toggle"><i class="fas fa-align-left"></i></button>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
+            <div style="background-color: #051a4b" class="sidebar-heading">
+                <a routerLink="home"><img src="assets/img/milanx_branco.png" width="95px"></a>
+            </div>
             <div class="container-fluid">
                 <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -49,7 +34,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="bmd-form-group bmd-collapse-inline col-md-3 offset-md-3">
+                    <div *ngIf="loggedIn()" class="bmd-form-group bmd-collapse-inline col-md-3 offset-md-3">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Pesquisar">
                             <div class="input-group-append">
@@ -59,18 +44,32 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul *ngIf="loggedIn()" class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a style="color:white">Olá Rafael</a>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <a class="fas fa-user"> Olá {{userName()}}</a>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <form class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleDropdownFormEmail1"
+                                                style="cursor: pointer">Perfil</label>
+                                            <br>
+                                            <label for="exampleSair" (click)="logout()"
+                                                style="cursor: pointer">Sair</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <div class="container-fluid">
+        <div class="main">
             <router-outlet></router-outlet>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
 </div>

@@ -27,8 +27,8 @@ const routes: Routes = [
     ]
   },
   { path: 'home', component: HomeComponent },
-  // { path: '', redirectTo: 'user/login', pathMatch: 'full' },
-  // { path: '**', redirectTo: 'user/login' }
+  { path: '', redirectTo: 'user/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'user/login' }
 ];
 
 @NgModule({

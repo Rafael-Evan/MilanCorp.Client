@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import { MilanxAuthService } from '../_services/milanx-auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -8,20 +10,28 @@ import * as $ from 'jquery';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  user: any;
+
+  constructor(public authService: MilanxAuthService
+    ,         public router: Router
+    ,         private toastr: ToastrService) { }
 
   ngOnInit() {
 
-    $(document).ready(function () {
-      $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-      });
-    });
+  }
 
-    $("#menu-toggle").click(function (e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.toastr.show('Você não está mais logado');
+    this.router.navigate(['/user/login']);
+  }
+
+  userName() {
+    return sessionStorage.getItem('username');
   }
 
 }

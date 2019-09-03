@@ -13,25 +13,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var calendarEl = document.getElementById('calendar');
+    var calendarEl = document.getElementById('calendar');
 
-      let calendar = new Calendar(calendarEl, {
-        locale: 'pt-br',
-        plugins: [dayGridPlugin],
-        header: {
-          left: 'prevYear,nextYear today',
-          center: 'title',
-          right: 'today,dayGridMonth,dayGridDay',
-        },
-        defaultDate: '2019-06-15',
-        navLinks: true, // can click day/week names to navigate views
-        editable: true,
-        selectable: true,
-        eventLimit: true,
-      });
-      calendar.render();
+    let calendar = new Calendar(calendarEl, {
+      locale: 'pt-br',
+      plugins: [dayGridPlugin],
+      header: {
+        left: 'prevYear,nextYear today',
+        center: 'title',
+        right: 'today,dayGridMonth,dayGridDay',
+      },
+      defaultDate: '2019-06-15',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      selectable: true,
+      eventLimit: true,
     });
+    calendar.render();
   }
-
 }

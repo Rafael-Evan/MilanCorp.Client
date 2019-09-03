@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule} from '@angular/common/http';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,8 +36,11 @@ import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component'
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
+      FormsModule,
+      ReactiveFormsModule,
       ToastrModule.forRoot(),
-      AppRoutingModule
+      AppRoutingModule,
+      HttpClientModule
    ],
    providers: [],
    bootstrap: [

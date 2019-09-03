@@ -3,28 +3,7 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
- body {
-    overflow-x: hidden;
-  }
-  
-  #sidebar-wrapper {
-    min-height: 100vh;
-    margin-left: -15rem;
-    -webkit-transition: margin .25s ease-out;
-    -moz-transition: margin .25s ease-out;
-    -o-transition: margin .25s ease-out;
-    transition: margin .25s ease-out;
-  }
-  
-  #sidebar-wrapper .sidebar-heading {
-    padding: 0.875rem 1.25rem;
-    font-size: 1.2rem;
-  }
-  
-  #sidebar-wrapper .list-group {
-    width: 15rem;
-  }
-  
+ 
   #page-content-wrapper {
     min-width: 100vw;
   }
@@ -34,9 +13,6 @@
   }
   
   @media (min-width: 768px) {
-    #sidebar-wrapper {
-      margin-left: 0;
-    }
   
     #page-content-wrapper {
       min-width: 0;
@@ -47,4 +23,35 @@
       margin-left: -15rem;
     }
   }
+
+  .sidenav {
+    width: 165px;
+    position: fixed;
+    z-index: 1;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 80px 0;
+  }
   
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 12px;
+    color: rgb(97, 111, 122);
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #064579;
+  }
+  
+  .main {
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 16px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
