@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header text-white" style="background-color:#051a4b">
+          CADASTRAR NOVO EVENTO
+        </div>
+        <form [formGroup]="cadastrarEventoForm">
+            <div class="col-md-9 mb-4">
+                <label for="validationDefault03">Nome do Evento</label>
+                <input type="text" formControlName="title" class="form-control" id="title" required>
+              </div>
+          <div class="col-md-9 mb-4">
+            <label for="validationDefault02">Data Inicial</label>
+            <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
+          </div>
+          <div class="col-md-9 mb-4">
+              <label for="validationDefault02">Data Final</label>
+              <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
+            </div>
+          <div class="col-md-8 mb-6">
+            <button style="background-color: #051a4b" class="btn btn-raised btn-primary btn-sm" (click)="cadastrarEvento()">Adicionar Evento</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4 ml-auto">
+      <div class="card text-left">
+        <div class="card-header text-white" style="background-color:#051a4b">
+          LISTA DE EVENTOS
+        </div>
+        <div class="card-body">
+          <div>
+            <div id='calendar'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

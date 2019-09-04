@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Calendar } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
+import { EventoService } from '../_services/evento.service';
 
 @Component({
   selector: 'app-home',
@@ -9,26 +8,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  baseUrl = 'https://localhost:44361/api/evento';
+
+  constructor(private authService: EventoService) { }
 
   ngOnInit() {
-
-    var calendarEl = document.getElementById('calendar');
-
-    let calendar = new Calendar(calendarEl, {
-      locale: 'pt-br',
-      plugins: [dayGridPlugin],
-      header: {
-        left: 'prevYear,nextYear today',
-        center: 'title',
-        right: 'today,dayGridMonth,dayGridDay',
-      },
-      defaultDate: '2019-06-15',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      selectable: true,
-      eventLimit: true,
-    });
-    calendar.render();
+    this.authService.Eventos();
   }
 }

@@ -19,6 +19,7 @@ import { AutomovelComponent } from './vendas/automovel/automovel.component';
 import { ImoveisComponent } from './vendas/imoveis/imoveis.component';
 import { MateriaisComponent } from './vendas/materiais/materiais.component';
 import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component';
+import { EventoComponent } from './evento/evento.component';
 
 @NgModule({
    declarations: [
@@ -31,7 +32,8 @@ import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component'
       AutomovelComponent,
       ImoveisComponent,
       MateriaisComponent,
-      VendasMenuComponent
+      VendasMenuComponent,
+      EventoComponent
    ],
    imports: [
       BrowserModule,
