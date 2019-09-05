@@ -4,7 +4,6 @@ import { Calendar } from '@fullcalendar/core';
 import listPlugin from '@fullcalendar/list';
 import brLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({

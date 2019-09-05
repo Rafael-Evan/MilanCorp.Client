@@ -23,6 +23,8 @@ export class EventoComponent implements OnInit {
     , private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.validation();
+
     this.authService.listarEventos();
   }
 
@@ -39,6 +41,7 @@ export class EventoComponent implements OnInit {
       this.evento = Object.assign(this.cadastrarEventoForm.value);
       this.authService.CadastrarEvento(this.evento).subscribe(
         () => {
+          this.cadastrarEventoForm.reset();
           this.toastr.success('Evento cadastro com sucesso!');
         }, error => {
           this.toastr.error('Erro ao cadastrar o evento!');
