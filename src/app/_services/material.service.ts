@@ -8,11 +8,15 @@ export class MaterialService {
 
   baseUrl = 'https://localhost:44361/api/material/';
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-CadastrarMaterial(model: any) {
-  return this.http
-  .post(`${this.baseUrl}cadastrarMaterial`, model);
-}
+  CadastrarMaterial(model: any) {
+    return this.http
+      .post(`${this.baseUrl}cadastrarMaterial`, model);
+  }
+
+  postUpload(files: Array<FileList>) {
+    return this.http.post(`${this.baseUrl}upload`, files);
+  }
 
 }

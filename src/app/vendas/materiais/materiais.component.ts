@@ -16,6 +16,9 @@ export class MateriaisComponent implements OnInit {
   cadastrarMaterialForm: FormGroup;
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
+  total: any;
+  linhaTabela: any;
+  file: Array<FileList>;
 
   baseUrl = 'https://localhost:44361/api/evento';
 
@@ -52,14 +55,28 @@ export class MateriaisComponent implements OnInit {
     });
   }
 
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      this.file = event.target.files;
+    }
+  }
+
   addFieldValue() {
     this.fieldArray.push(this.newAttribute)
-    this.newAttribute = {};
-    console.log(this.fieldArray);
+    this.total = this.newAttribute.valor * this.newAttribute.quantidade;
+    this.newAttribute.valorTotal = this.total;
+    this.newAttribute = {
+    };
   }
 
   deleteFieldValue(index) {
     this.fieldArray.splice(index, 1);
+  }
+
+  deleteAll(index) {
+    this.fieldArray.splice(index, 300);
   }
 
   validation() {
@@ -74,9 +91,16 @@ export class MateriaisComponent implements OnInit {
 
   cadastrarMaterial() {
     if (this.cadastrarMaterialForm.valid) {
-      this.material = Object.assign(this.cadastrarMaterialForm.value);
+      this.material = this.fieldArray;
       this.authService.CadastrarMaterial(this.material).subscribe(
         () => {
+          this.authService.postUpload(this.file).subscribe();
+          // const nomeArquivo = this.material.upload.split('\\', 3);
+          // this.material.upload = nomeArquivo[2];
+
+          for (let i = 0; i < this.fieldArray.length; i++) {
+            this.deleteAll(i);
+          }
           this.cadastrarMaterialForm.reset();
         }, error => {
           this.toastr.error('Erro ao cadastrar o evento!');

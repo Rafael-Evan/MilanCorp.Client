@@ -34,10 +34,12 @@
                     [(ngModel)]="newAttribute.quantidade" name="newAttributequantidade" />
                 <!-- <input type="text" formControlName="quantidade" class="form-control" id="quantidade" required> -->
             </div>
+            <input class="form-control" type="hidden" id="newAttributevalorTotal" [(ngModel)]="newAttribute.valorTotal"
+                name="newAttributevalorTotal" />
             <div class="mb-6">
                 <br>
-                &nbsp;<button style="background-color: #051a4b" class="btn btn-raised btn-primary btn-sm" type="button"
-                    (click)="addFieldValue()">Add item</button>
+                &nbsp;<button style="background-color: #051a4b;border-radius: 10px;"
+                    class="btn btn-raised btn-primary btn-sm" type="button" (click)="addFieldValue()">Add item</button>
                 <!-- &nbsp;<button style="background-color: #051a4b" class="btn btn-raised btn-primary btn-sm" (click)="cadastrarMaterial()">add
                   item</button> -->
             </div>
@@ -58,27 +60,24 @@
                 <tbody>
                     <tr *ngFor="let field of fieldArray; let i = index">
                         <td>
-                            <input [(ngModel)]="field.numeroDaNota" class="form-control" type="text"
-                                name="{{field.numeroDaNota}}" />
+                            {{field.numeroDaNota}}
                         </td>
                         <td>
-                            <input [(ngModel)]="field.descricao" class="form-control" type="text"
-                                name="{{field.descricao}}" />
+                            {{field.descricao}}
                         </td>
                         <td>
-                            <input [(ngModel)]="field.quantidade" class="form-control" type="text"
-                                name="{{field.quantidade}}" />
+                            {{field.quantidade}}
                         </td>
                         <td>
-                            <input [(ngModel)]="field.valor" class="form-control" type="number" name="{{200 * 200}}" />
+                            {{field.valor | currency:'BRL':true}}
                         </td>
                         <td>
-
+                            {{field.valorTotal | currency:'BRL':true}}
+                            <!-- <input [(ngModel)]="field.valorTotal" class="form-control" type="number"
+                                name="{{field.valorTotal}}" /> -->
                         </td>
-                        <td>
-                            <button class="btn btn-raised btn-danger btn-sm" type="button"
-                                (click)="deleteFieldValue(i)">Delete</button>
-                        </td>
+                        <button style="border-radius: 10px;" class="btn btn-raised btn-danger btn-sm" type="button"
+                            (click)="deleteFieldValue(i)">Delete</button>
                     </tr>
                 </tbody>
             </table>
@@ -93,10 +92,12 @@
             <div class="col-md-4 mb-2">
                 <label for="validationDefault02">Arquivo NF (SCANIADO - PDF*)</label>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-sm" readonly>
+                    <input style="border-radius: 10px;" type="text" class="form-control form-control-sm" readonly>
                     <label class="input-group-btn">
-                        <span style="background-color:#0099cc" class="btn btn-raised btn-primary btn-sm">
-                            ANEXAR ARQUIVOS<input type="file" style="display: none;" multiple>
+                        <span style="background-color:#0099cc;border-radius: 10px;"
+                            class="btn btn-raised btn-primary btn-sm">
+                            ANEXAR ARQUIVOS<input type="file" style="display: none;" (change)="onFileChange($event)"
+                                multiple>
                         </span>
                     </label>
                 </div>
@@ -104,10 +105,11 @@
             <div class="col-md-4 mb-4 offset-md-2">
                 <label for="validationDefault02">GARE (SCANIADO - PDF*)</label>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-sm" readonly>
+                    <input style="border-radius: 10px;" type="text" class="form-control form-control-sm" readonly>
                     <label class="input-group-btn">
-                        <span style="background-color:#0099cc" class="btn btn-raised btn-primary btn-sm">
-                            ANEXAR ARQUIVOS<input type="file" style="display: none;" multiple>
+                        <span style="background-color:#0099cc;border-radius: 10px;"
+                            class="btn btn-raised btn-primary btn-sm">
+                            ANEXAR ARQUIVOS<input type="file" style="display: none;" (change)="onFileChange($event)" multiple>
                         </span>
                     </label>
                 </div>
@@ -117,10 +119,11 @@
             <div class="col-md-4 mb-2">
                 <label for="validationDefault02">Termo de Aceite (SCANIADO - PDF*)</label>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-sm" readonly>
+                    <input style="border-radius: 10px;" type="text" class="form-control form-control-sm" readonly>
                     <label class="input-group-btn">
-                        <span style="background-color:#0099cc" class="btn btn-raised btn-primary btn-sm">
-                            ANEXAR ARQUIVOS<input type="file" style="display: none;" multiple>
+                        <span style="background-color:#0099cc;border-radius: 10px;"
+                            class="btn btn-raised btn-primary btn-sm">
+                            ANEXAR ARQUIVOS<input type="file" style="display: none;" (change)="onFileChange($event)" multiple>
                         </span>
                     </label>
                 </div>
@@ -128,7 +131,8 @@
         </div>
     </form>
     <div class="col text-center">
-        <button style="background-color:#009b5f" type="button" class="btn btn-raised btn-success">Finalizar
+        <button style="background-color:#009b5f;border-radius: 10px;" type="button" class="btn btn-raised btn-success"
+            (click)="cadastrarMaterial()">Finalizar
             Venda</button>
     </div>
 </div>
