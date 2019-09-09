@@ -59,7 +59,7 @@ export class MateriaisComponent implements OnInit {
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
-      this.file = event.target.files;
+      this.files = event.target.files;
     }
   }
 
