@@ -15,7 +15,7 @@ export class MaterialService {
       .post(`${this.baseUrl}cadastrarMaterial`, model);
   }
 
-  postUpload(files: Array<FileList>) {
+  postUpload(files: Array<File>) {
     return this.http.post(`${this.baseUrl}upload`, files);
   }
 
