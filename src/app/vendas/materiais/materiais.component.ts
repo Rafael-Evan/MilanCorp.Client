@@ -18,7 +18,7 @@ export class MateriaisComponent implements OnInit {
   public newAttribute: any = {};
   total: any;
   linhaTabela: any;
-  file: Array<FileList>;
+  files: Array<File>;
 
   baseUrl = 'https://localhost:44361/api/evento';
 
@@ -94,7 +94,7 @@ export class MateriaisComponent implements OnInit {
       this.material = this.fieldArray;
       this.authService.CadastrarMaterial(this.material).subscribe(
         () => {
-          this.authService.postUpload(this.file).subscribe();
+          this.authService.postUpload(this.files).subscribe();
           // const nomeArquivo = this.material.upload.split('\\', 3);
           // this.material.upload = nomeArquivo[2];
 
