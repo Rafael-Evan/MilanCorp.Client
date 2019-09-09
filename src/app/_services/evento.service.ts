@@ -4,22 +4,23 @@ import { Calendar } from '@fullcalendar/core';
 import listPlugin from '@fullcalendar/list';
 import brLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
-
-  baseUrl = 'https://localhost:44361/api/evento/';
+  private baseUrl = `${environment.apiUrl}evento`;
 
   constructor(private http: HttpClient) { }
 
 
   Eventos() {
-    var calendarEl = document.getElementById('calendar');
+    // tslint:disable-next-line: prefer-const
+    let calendarEl = document.getElementById('calendar');
 
-    let calendar = new Calendar(calendarEl, {
+    const calendar = new Calendar(calendarEl, {
       plugins: [dayGridPlugin],
       header: {
         left: 'prev,next',
@@ -41,7 +42,7 @@ export class EventoService {
                 custom_param1: 'something',
                 custom_param2: 'somethingelse'
             },
-            error: function () {
+            error() {
                 alert('there was an error while fetching events!');
             },
             color: 'skyblue',   // a non-ajax option
@@ -53,9 +54,9 @@ export class EventoService {
   }
 
   listarEventos() {
-    var calendarEl = document.getElementById('calendar');
+    const calendarEl = document.getElementById('calendar');
 
-    let calendar = new Calendar(calendarEl, {
+    const calendar = new Calendar(calendarEl, {
       plugins: [listPlugin],
       header: {
         right: 'today,list',
@@ -71,7 +72,7 @@ export class EventoService {
             custom_param1: 'something',
             custom_param2: 'somethingelse'
           },
-          error: function () {
+          error() {
             alert('there was an error while fetching events!');
           },
           color: 'skyblue',   // a non-ajax option
@@ -82,9 +83,9 @@ export class EventoService {
     calendar.render();
   }
 
-  CadastrarEvento(model: any) { 
+  CadastrarEvento(model: any) {
     return this.http
-    .post(`${this.baseUrl}cadastrarEvento`, model);
+    .post(`${this.baseUrl}/cadastrarEvento`, model);
   }
 
 }

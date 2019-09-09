@@ -15,8 +15,6 @@ export class EventoComponent implements OnInit {
   evento: any;
   cadastrarEventoForm: FormGroup;
 
-  baseUrl = 'https://localhost:44361/api/evento';
-
   constructor(private authService: EventoService
     , public fb: FormBuilder
     , public router: Router

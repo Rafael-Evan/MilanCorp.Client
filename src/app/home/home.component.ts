@@ -8,8 +8,6 @@ import { EventoService } from '../_services/evento.service';
 })
 export class HomeComponent implements OnInit {
 
-  baseUrl = 'https://localhost:44361/api/evento';
-
   constructor(private authService: EventoService) { }
 
   ngOnInit() {

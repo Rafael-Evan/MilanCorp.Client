@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaterialService {
 
-  baseUrl = 'https://localhost:44361/api/material/';
+  private baseUrl = `${environment.apiUrl}material`;
 
   constructor(private http: HttpClient) { }
 
   CadastrarMaterial(model: any) {
     return this.http
-      .post(`${this.baseUrl}cadastrarMaterial`, model);
+      .post(`${this.baseUrl}/cadastrarMaterial`, model);
   }
 
-  postUpload(files: Array<File>) {
-    return this.http.post(`${this.baseUrl}upload`, files);
+  postUpload(files: File) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      headers: headers
+    };
+
+    return this.http.post(`${this.baseUrl}/upload`, {options, files});
   }
 
 }
