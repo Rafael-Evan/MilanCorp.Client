@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MaterialService } from 'src/app/_services/material.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-materiais',
@@ -12,13 +13,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MateriaisComponent implements OnInit {
 
+  public progress: number;
+  public message: string;
+  @Output() public onUploadFinished = new EventEmitter();
+
   material: any;
   cadastrarMaterialForm: FormGroup;
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
   total: any;
   linhaTabela: any;
-  files: File;
+  files: Blob;
+  name: any;
 
   constructor(private authService: MaterialService
     , public fb: FormBuilder
@@ -90,11 +96,11 @@ export class MateriaisComponent implements OnInit {
   cadastrarMaterial() {
     if (this.cadastrarMaterialForm.valid) {
       this.material = this.fieldArray;
+      this.name = 'Material';
       this.authService.CadastrarMaterial(this.material).subscribe(
         () => {
-          this.authService.postUpload(this.files).subscribe();
-          const nomeArquivo = this.material.upload.split('\\', 3);
-          this.material.upload = nomeArquivo[2];
+          this.authService.postUpload(this.files).subscribe(
+          );
 
           for (let i = 0; i < this.fieldArray.length; i++) {
             this.deleteAll(i);
