@@ -9,6 +9,7 @@ import { ImoveisComponent } from './vendas/imoveis/imoveis.component';
 import { MateriaisComponent } from './vendas/materiais/materiais.component';
 import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component';
 import { EventoComponent } from './evento/evento.component';
+import { FileupComponent } from './fileup/fileup.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
     ]
   },
   { path: 'home', component: HomeComponent },
+  { path: 'file', component: FileupComponent },
   {path: 'evento', component: EventoComponent},
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'user/login' }

@@ -1,14 +1,18 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { FileUpload } from '../_models/FileUpload';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaterialService {
-  file: File;
-  
+
+  files: File;
+
   private baseUrl = `${environment.apiUrl}material`;
+  private baseUpload = `${environment.apiUrl}upload`;
 
   constructor(private http: HttpClient) { }
 
@@ -17,27 +21,14 @@ export class MaterialService {
       .post(`${this.baseUrl}/cadastrarMaterial`, model);
   }
 
-  postUpload(files) {
-    if (files.length === 0) {
-      return;
-    }
-
+  postFile(fileToUpload: Array<File>, NomeDaPasta: any) {
     const formData: FormData = new FormData();
-    formData.append('file', files[0], files[0].name);
-    return this.http.post(`${environment.apiUrl}/upload`, formData);
-
-    // return this.http.post(`${environment.apiUrl}/upload`, formData, { reportProgress: true, observe: 'events' });
+    formData.append('Materiais', NomeDaPasta);
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < fileToUpload.length; i++) {
+      formData.append('fileKey', fileToUpload[i], fileToUpload[i].name);
+    }
+    return this.http.post(this.baseUpload, formData, NomeDaPasta);
   }
-
-  // postUpload(files: File) {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json'
-  //   });
-  //   const options = {
-  //     headers: headers
-  //   };
-
-  //   return this.http.post(`${this.baseUrl}/upload`, {options, files});
-  // }
 
 }

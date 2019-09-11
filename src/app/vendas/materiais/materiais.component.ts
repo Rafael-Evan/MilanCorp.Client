@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MaterialService } from 'src/app/_services/material.service';
 import { ToastrService } from 'ngx-toastr';
-import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-materiais',
@@ -13,58 +12,44 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class MateriaisComponent implements OnInit {
 
-  public progress: number;
-  public message: string;
-  @Output() public onUploadFinished = new EventEmitter();
-
   material: any;
   cadastrarMaterialForm: FormGroup;
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
   total: any;
   linhaTabela: any;
-  files: Blob;
-  name: any;
+  files: File;
+  i = 0;
+  NomeDaPasta: String;
 
-  constructor(private authService: MaterialService
-    , public fb: FormBuilder
-    , public router: Router
-    , private toastr: ToastrService) { }
+  fileToUpload: Array<File> = [];
 
-  ngOnInit() {
-    this.validation();
-
-    $(function () {
-      // We can attach the `fileselect` event to all file inputs on the page
-      $(document).on('change', ':file', function () {
-        var input = $(this),
-          numFiles = input.get(0).files ? input.get(0).files.length : 1,
-          label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        input.trigger('fileselect', [numFiles, label]);
-      });
-
-      // We can watch for our custom `fileselect` event like this
-      $(document).ready(function () {
-        $(':file').on('fileselect', function (event, numFiles, label) {
-          var input = $(this).parents('.input-group').find(':text'),
-            log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-          if (input.length) {
-            input.val(log);
-          } else {
-            if (log) alert(log);
-          }
-        });
-      });
-    });
+  handleFileInput(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      // tslint:disable-next-line: triple-equals
+      if (this.i == 1) {
+        this.i++;
+        i++;
+        this.fileToUpload[i] = files.item(0);
+      // tslint:disable-next-line: triple-equals
+      } else if (this.i == 2) {
+        i = i + 2;
+        this.fileToUpload[i] = files.item(0);
+      }
+      else {
+        this.i++;
+        this.fileToUpload[i] = files.item(0);
+      }
+    }
   }
 
-  onFileChange(event) {
-    const reader = new FileReader();
+    constructor(private authService: MaterialService
+      , public fb: FormBuilder
+      , public router: Router
+      , private toastr: ToastrService) { }
 
-    if (event.target.files && event.target.files.length) {
-      this.files = event.target.files;
-    }
+    ngOnInit() {
+      this.validation();
   }
 
   addFieldValue() {
@@ -75,42 +60,47 @@ export class MateriaisComponent implements OnInit {
     };
   }
 
-  deleteFieldValue(index) {
-    this.fieldArray.splice(index, 1);
-  }
-
-  deleteAll(index) {
-    this.fieldArray.splice(index, 300);
-  }
-
-  validation() {
-    this.cadastrarMaterialForm = this.fb.group({
-      dataEmissao: [''],
-      numeroDaNota: [''],
-      descricao: [''],
-      valor: [''],
-      quantidade: [''],
-    });
-  }
-
-  cadastrarMaterial() {
-    if (this.cadastrarMaterialForm.valid) {
-      this.material = this.fieldArray;
-      this.name = 'Material';
-      this.authService.CadastrarMaterial(this.material).subscribe(
-        () => {
-          this.authService.postUpload(this.files).subscribe(
-          );
-
-          for (let i = 0; i < this.fieldArray.length; i++) {
-            this.deleteAll(i);
-          }
-          this.cadastrarMaterialForm.reset();
-        }, error => {
-          this.toastr.error('Erro ao cadastrar o evento!');
-        }
-      );
+    deleteFieldValue(index) {
+      this.fieldArray.splice(index, 1);
     }
-  }
 
-}
+    deleteAll(index) {
+      this.fieldArray.splice(index, 300);
+    }
+
+    validation() {
+      this.cadastrarMaterialForm = this.fb.group({
+        dataEmissao: [''],
+        numeroDaNota: [''],
+        descricao: [''],
+        valor: [''],
+        quantidade: [''],
+      });
+    }
+
+    cadastrarMaterial() {
+      if (this.cadastrarMaterialForm.valid) {
+        this.material = this.fieldArray;
+        this.NomeDaPasta = 'Materiais';
+        this.authService.CadastrarMaterial(this.material).subscribe(
+          () => {
+            // this.authService.postUpload(this.files[0]).subscribe(
+            // );
+            this.authService.postFile(this.fileToUpload, this.NomeDaPasta).subscribe(data => {
+              // do something, if upload success
+            }, error => {
+              console.log(error);
+            });
+
+            for (let i = 0; i < this.fieldArray.length; i++) {
+              this.deleteAll(i);
+            }
+            this.cadastrarMaterialForm.reset();
+          }, error => {
+            this.toastr.error('Erro ao cadastrar o evento!');
+          }
+        );
+      }
+    }
+
+  }
