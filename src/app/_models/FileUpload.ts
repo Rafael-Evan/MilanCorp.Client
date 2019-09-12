@@ -1,8 +1,7 @@
-export class FileUpload {
-    id: string;
-    extension: string;
+export class FileUpload extends Blob {
     name: string;
-    source: string;
+    size: number;
     type: string;
-    uploadURL: Date;
+    input?: any;
+    lastModified: number;
 }

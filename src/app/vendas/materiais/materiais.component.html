@@ -92,13 +92,13 @@
             <div class="col-md-4 mb-2">
                 <label for="validationDefault02">Arquivo NF (SCANIADO - PDF*)</label>
                 <div class="form-group">
-                    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+                    <input type="file" id="fileArquivoNF" (change)="handleFileInput($event.target.files, 'ArquivoNFe')">
                   </div>
             </div>
             <div class="col-md-4 mb-4 offset-md-2">
                 <label for="validationDefault02">Termo de Aceite (SCANIADO - PDF*)</label>
                 <div class="form-group">
-                    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+                    <input type="file" id="fileTermoDeAceite" (change)="handleFileInput($event.target.files, 'TermoDeAceite')">
                   </div>
             </div>
         </div>

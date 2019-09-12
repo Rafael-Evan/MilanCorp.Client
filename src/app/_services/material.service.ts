@@ -21,12 +21,12 @@ export class MaterialService {
       .post(`${this.baseUrl}/cadastrarMaterial`, model);
   }
 
-  postFile(fileToUpload: Array<File>, NomeDaPasta: any) {
+  postFile(fileToUpload: Array<FileUpload>, NomeDaPasta: any) {
     const formData: FormData = new FormData();
     formData.append('Materiais', NomeDaPasta);
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < fileToUpload.length; i++) {
-      formData.append('fileKey', fileToUpload[i], fileToUpload[i].name);
+      formData.append('fileKey', fileToUpload[i], fileToUpload[i].input);
     }
     return this.http.post(this.baseUpload, formData, NomeDaPasta);
   }
