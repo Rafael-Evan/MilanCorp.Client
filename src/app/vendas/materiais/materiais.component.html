@@ -92,19 +92,19 @@
             <div class="col-md-4 mb-2">
                 <label for="validationDefault02">Arquivo NF (SCANIADO - PDF*)</label>
                 <div class="form-group">
-                    <input formControlName="fileNF" type="file" id="fileArquivoNF" (change)="handleFileInput($event.target.files, 'ArquivoNFe')">
+                    <input formControlName="fileNF" type="file" id="fileArquivoNF" (change)="handleFileInput($event.target.files, 'ArquivoNFe')" required>
                   </div>
             </div>
             <div class="col-md-4 mb-4 offset-md-2">
                 <label for="validationDefault02">Termo de Aceite (SCANIADO - PDF*)</label>
                 <div class="form-group">
-                    <input formControlName="fileTermo" type="file" id="fileTermoDeAceite" (change)="handleFileInput($event.target.files, 'TermoDeAceite')">
+                    <input formControlName="fileTermo" type="file" id="fileTermoDeAceite" (change)="handleFileInput($event.target.files, 'TermoDeAceite')" required>
                   </div>
             </div>
         </div>
     </form>
     <div class="col text-center">
-        <button style="background-color:#009b5f;border-radius: 10px;" type="button" class="btn btn-raised btn-success"
+        <button [disabled]="!formInputs.valid" style="background-color:#009b5f;border-radius: 10px;" type="button" class="btn btn-raised btn-success"
             (click)="cadastrarMaterial()">Finalizar
             Venda</button>
     </div>
