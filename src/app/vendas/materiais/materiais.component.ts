@@ -1,9 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MaterialService } from 'src/app/_services/material.service';
 import { ToastrService } from 'ngx-toastr';
 import { FileUpload } from 'src/app/_models/FileUpload';
+import Swal from 'sweetalert2';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-materiais',
@@ -22,6 +25,7 @@ export class MateriaisComponent implements OnInit {
   i = 0;
   NomeDaPasta: String;
 
+
   fileUp: Array<FileUpload> = [];
   fileToUpload: Array<File> = [];
 
@@ -33,7 +37,7 @@ export class MateriaisComponent implements OnInit {
         i++;
         this.fileUp[i] = files.item(0);
         this.fileUp[i].input = input + '.pdf';
-      }else {
+      } else {
         this.i++;
         this.fileUp[i] = files.item(0);
         this.fileUp[i].input = input + '.pdf';
@@ -41,14 +45,20 @@ export class MateriaisComponent implements OnInit {
     }
   }
 
-    constructor(private authService: MaterialService
-      , public fb: FormBuilder
-      , public router: Router
-      , private toastr: ToastrService) { }
+  constructor(private authService: MaterialService
+    , public fb: FormBuilder
+    , public router: Router
+    , private toastr: ToastrService
+    , private location: Location) { }
 
-    ngOnInit() {
-      this.validation();
+  ngOnInit() {
+    this.validation();
   }
+
+  formInputs = new FormGroup({
+    fileNF: new FormControl(),
+    fileTermo: new FormControl(),
+  });
 
   addFieldValue() {
     this.fieldArray.push(this.newAttribute)
@@ -58,47 +68,59 @@ export class MateriaisComponent implements OnInit {
     };
   }
 
-    deleteFieldValue(index) {
-      this.fieldArray.splice(index, 1);
-    }
-
-    deleteAll(index) {
-      this.fieldArray.splice(index, 300);
-    }
-
-    validation() {
-      this.cadastrarMaterialForm = this.fb.group({
-        dataEmissao: [''],
-        numeroDaNota: [''],
-        descricao: [''],
-        valor: [''],
-        quantidade: [''],
-      });
-    }
-
-    cadastrarMaterial() {
-      if (this.cadastrarMaterialForm.valid) {
-        this.material = this.fieldArray;
-        this.NomeDaPasta = 'Materiais';
-        this.authService.CadastrarMaterial(this.material).subscribe(
-          () => {
-            // this.authService.postUpload(this.files[0]).subscribe(
-            // );
-            this.authService.postFile(this.fileUp, this.NomeDaPasta).subscribe(data => {
-              // do something, if upload success
-            }, error => {
-              console.log(error);
-            });
-
-            for (let i = 0; i < this.fieldArray.length; i++) {
-              this.deleteAll(i);
-            }
-            this.cadastrarMaterialForm.reset();
-          }, error => {
-            this.toastr.error('Erro ao cadastrar o evento!');
-          }
-        );
-      }
-    }
-
+  deleteFieldValue(index) {
+    this.fieldArray.splice(index, 1);
   }
+
+  deleteAll(index) {
+    this.fieldArray.splice(index, 300);
+  }
+
+  validation() {
+    this.cadastrarMaterialForm = this.fb.group({
+      dataEmissao: [''],
+      numeroDaNota: [''],
+      descricao: [''],
+      valor: [''],
+      quantidade: [''],
+    });
+  }
+
+  cadastrarMaterial() {
+    if (this.cadastrarMaterialForm.valid) {
+      this.material = this.fieldArray;
+      this.NomeDaPasta = 'Materiais';
+      this.authService.postFile(this.fileUp, this.NomeDaPasta).subscribe(
+        // this.authService.CadastrarMaterial(this.material).subscribe(
+        (data => {
+          this.formInputs.reset();
+          this.material.forEach(element => {
+            element.UploadId = data;
+          });
+          this.authService.CadastrarMaterial(this.material).subscribe(() => {
+            Swal.fire(
+              'Finalizado!',
+              'Venda finalizada com sucesso :)',
+              'success'
+            );
+          }, error => {
+            Swal.fire(
+              'Cancelado!',
+              'Ocorreu um erro ao cadastrar a venda :(',
+              'error'
+            ).finally(() => {
+              location.reload();
+            });
+          });
+          for (let i = 0; i < this.fieldArray.length; i++) {
+            this.deleteAll(i);
+          }
+          this.cadastrarMaterialForm.reset();
+        }), error => {
+          this.toastr.error('Erro ao cadastrar o evento!');
+        }
+      );
+    }
+  }
+
+}
