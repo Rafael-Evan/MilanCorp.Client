@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FileUpload } from 'src/app/_models/FileUpload';
 import Swal from 'sweetalert2';
 import { Location } from '@angular/common';
+import { MilanxAuthService } from 'src/app/_services/milanx-auth.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class MateriaisComponent implements OnInit {
   files: File;
   i = 0;
   NomeDaPasta: String;
+  userName: String;
 
 
   fileUp: Array<FileUpload> = [];
@@ -49,7 +51,8 @@ export class MateriaisComponent implements OnInit {
     , public fb: FormBuilder
     , public router: Router
     , private toastr: ToastrService
-    , private location: Location) { }
+    , private location: Location
+    , private authServiceX: MilanxAuthService) { }
 
   ngOnInit() {
     this.validation();
@@ -90,36 +93,41 @@ export class MateriaisComponent implements OnInit {
     if (this.cadastrarMaterialForm.valid) {
       this.material = this.fieldArray;
       this.NomeDaPasta = 'Materiais';
-      this.authService.postFile(this.fileUp, this.NomeDaPasta).subscribe(
-        // this.authService.CadastrarMaterial(this.material).subscribe(
-        (data => {
-          this.formInputs.reset();
-          this.material.forEach(element => {
-            element.UploadId = data;
-          });
-          this.authService.CadastrarMaterial(this.material).subscribe(() => {
-            Swal.fire(
-              'Finalizado!',
-              'Venda finalizada com sucesso :)',
-              'success'
-            );
-          }, error => {
-            Swal.fire(
-              'Cancelado!',
-              'Ocorreu um erro ao cadastrar a venda :(',
-              'error'
-            ).finally(() => {
-              location.reload();
-            });
-          });
-          for (let i = 0; i < this.fieldArray.length; i++) {
-            this.deleteAll(i);
-          }
-          this.cadastrarMaterialForm.reset();
-        }), error => {
-          this.toastr.error('Erro ao cadastrar o evento!');
-        }
-      );
+      this.userName = sessionStorage.getItem('username');
+      this.authServiceX.buscarUsuario(this.userName).subscribe(
+        dataUserName => {
+          this.authService.postFile(this.fileUp, this.NomeDaPasta).subscribe(
+            // this.authService.CadastrarMaterial(this.material).subscribe(
+            (data => {
+              this.formInputs.reset();
+              this.material.forEach(element => {
+                element.UploadId = data;
+                element.UserId = dataUserName;
+              });
+              this.authService.CadastrarMaterial(this.material).subscribe(() => {
+                Swal.fire(
+                  'Finalizado!',
+                  'Venda finalizada com sucesso :)',
+                  'success'
+                );
+              }, error => {
+                Swal.fire(
+                  'Cancelado!',
+                  'Ocorreu um erro ao cadastrar a venda :(',
+                  'error'
+                ).finally(() => {
+                  location.reload();
+                });
+              });
+              for (let i = 0; i < this.fieldArray.length; i++) {
+                this.deleteAll(i);
+              }
+              this.cadastrarMaterialForm.reset();
+            }), error => {
+              this.toastr.error('Erro ao cadastrar o evento!');
+            }
+          );
+        });
     }
   }
 

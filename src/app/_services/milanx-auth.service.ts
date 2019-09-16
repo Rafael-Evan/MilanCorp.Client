@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -29,8 +29,11 @@ export class MilanxAuthService {
       );
   }
 
-  buscarUsuario() {
-    
+  buscarUsuario(userName: any) {
+    let headers = new HttpHeaders();
+    const body = JSON.stringify({UserName: userName});
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(`${this.baseUrl}/UserName`, body, {headers});
   }
 
   loggedIn() {
