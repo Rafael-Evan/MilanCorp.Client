@@ -94,7 +94,7 @@ export class MateriaisComponent implements OnInit {
       this.material = this.fieldArray;
       this.NomeDaPasta = 'Materiais';
       this.userName = sessionStorage.getItem('username');
-      this.authServiceX.buscarUsuario(this.userName).subscribe(
+      this.authServiceX.listarUsuarioPorUserName(this.userName).subscribe(
         dataUserName => {
           this.authService.postFile(this.fileUp, this.NomeDaPasta).subscribe(
             // this.authService.CadastrarMaterial(this.material).subscribe(

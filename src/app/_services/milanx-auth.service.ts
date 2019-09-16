@@ -29,7 +29,7 @@ export class MilanxAuthService {
       );
   }
 
-  buscarUsuario(userName: any) {
+  listarUsuarioPorUserName(userName: any) {
     let headers = new HttpHeaders();
     const body = JSON.stringify({UserName: userName});
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
