@@ -29,11 +29,11 @@ export class MilanxAuthService {
       );
   }
 
-  listarUsuarioPorUserName(userName: any) {
+  listarIdDoUsuario(userName: any) {
     let headers = new HttpHeaders();
     const body = JSON.stringify({UserName: userName});
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.http.post(`${this.baseUrl}/UserName`, body, {headers});
+    return this.http.post(`${this.baseUrl}/Id`, body, {headers});
   }
 
   loggedIn() {
