@@ -20,6 +20,7 @@ import { ImoveisComponent } from './vendas/imoveis/imoveis.component';
 import { MateriaisComponent } from './vendas/materiais/materiais.component';
 import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component';
 import { EventoComponent } from './evento/evento.component';
+import { DetalhesDaVendaComponent } from './vendas/materiais/detalhes-da-venda/detalhes-da-venda.component';
 
 @NgModule({
    declarations: [
@@ -34,6 +35,7 @@ import { EventoComponent } from './evento/evento.component';
       MateriaisComponent,
       VendasMenuComponent,
       EventoComponent,
+      DetalhesDaVendaComponent,
    ],
    imports: [
       BrowserModule,

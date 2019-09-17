@@ -29,6 +29,17 @@ export class MilanxAuthService {
       );
   }
 
+  getNomeCompleto(id: number) {
+    return this.http.get(`${this.baseUrl}/FullName/` + id);
+  }
+
+  listarUsuarioPeloUserName(userName: any) {
+    let headers = new HttpHeaders();
+    const body = JSON.stringify({UserName: userName});
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(`${this.baseUrl}/VerificarAcessos`, body, {headers});
+  }
+
   listarIdDoUsuario(userName: any) {
     let headers = new HttpHeaders();
     const body = JSON.stringify({UserName: userName});

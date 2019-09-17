@@ -1,45 +1,46 @@
-<div class="container">
+<div *ngIf="roleId == 2" class="container">
     <b style="color:rgb(10, 85, 197)">CENTRAL DE VENDAS - MATERIAIS</b>
     <br>
     <br>
-    <form>
+    <form [formGroup]="formCadastrarMateriais">
         <div class="form-row">
             <div class="col-md-2 mb-2">
                 <label for="validationDefault02">Data Emissão *</label>
-                <input class="form-control" type="date" id="newAttributedataEmissao"
-                    [(ngModel)]="newAttribute.dataEmissao" name="newAttributedataEmissao" />
+                <input formControlName="DataDaEmissao" class="form-control" type="date" id="newAttributedataEmissao"
+                    [(ngModel)]="newAttribute.dataEmissao" name="newAttributedataEmissao" required />
                 <!-- <input type="date" formControlName="dataEmissao" class="form-control" id="dataEmissao" required> -->
             </div>
             <div class="col-md-1 mb-1">
                 <label for="validationDefault03">N° NF</label>
-                <input class="form-control" type="text" id="newAttributenumeroDaNota"
-                    [(ngModel)]="newAttribute.numeroDaNota" name="newAttributenumeroDaNota" />
+                <input formControlName="NumeroNF" class="form-control" type="text" id="newAttributenumeroDaNota"
+                    [(ngModel)]="newAttribute.numeroDaNota" name="newAttributenumeroDaNota" required />
                 <!-- <input type="text" formControlName="numeroDaNota" class="form-control" id="numeroDaNota" required> -->
             </div>
             <div class="col-md-4 mb-4">
                 <label for="validationDefault03">Descrição do Item</label>
-                <input class="form-control" type="text" id="newAttributedescricao" [(ngModel)]="newAttribute.descricao"
-                    name="newAttributedescricao" />
+                <input formControlName="DescricaoDoItem" class="form-control" type="text" id="newAttributedescricao"
+                    [(ngModel)]="newAttribute.descricao" name="newAttributedescricao" required />
                 <!-- <input type="text" formControlName="descricao" class="form-control" id="descricao" required> -->
             </div>
             <div class="col-md-1 mb-2">
                 <label for="validationDefault03">Valor</label>
-                <input class="form-control" type="text" id="newAttributevalor" [(ngModel)]="newAttribute.valor"
-                    name="newAttributevalor" />
+                <input formControlName="Valor" class="form-control" type="text" id="newAttributevalor"
+                    [(ngModel)]="newAttribute.valor" name="newAttributevalor" required />
                 <!-- <input type="text" formControlName="valor" class="form-control" id="valor" required> -->
             </div>
             <div class="col-md-1 mb-1">
                 <label for="validationDefault03">Qtda.</label>
-                <input class="form-control" type="text" id="newAttributequantidade"
-                    [(ngModel)]="newAttribute.quantidade" name="newAttributequantidade" />
+                <input formControlName="Quantidade" class="form-control" type="text" id="newAttributequantidade"
+                    [(ngModel)]="newAttribute.quantidade" name="newAttributequantidade" required />
                 <!-- <input type="text" formControlName="quantidade" class="form-control" id="quantidade" required> -->
             </div>
-            <input class="form-control" type="hidden" id="newAttributevalorTotal" [(ngModel)]="newAttribute.valorTotal"
-                name="newAttributevalorTotal" />
+            <input formControlName="ValorTotal" class="form-control" type="hidden" id="newAttributevalorTotal"
+                [(ngModel)]="newAttribute.valorTotal" name="newAttributevalorTotal" />
             <div class="mb-6">
                 <br>
-                &nbsp;<button style="background-color: #051a4b;border-radius: 10px;"
-                    class="btn btn-raised btn-primary btn-sm" type="button" (click)="addFieldValue()">Add item</button>
+                &nbsp;<button [disabled]="!formCadastrarMateriais.valid"
+                    style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-primary btn-sm"
+                    type="button" (click)="addFieldValue()">Add item</button>
                 <!-- &nbsp;<button style="background-color: #051a4b" class="btn btn-raised btn-primary btn-sm" (click)="cadastrarMaterial()">add
                   item</button> -->
             </div>
@@ -92,20 +93,48 @@
             <div class="col-md-4 mb-2">
                 <label for="validationDefault02">Arquivo NF (SCANIADO - PDF*)</label>
                 <div class="form-group">
-                    <input formControlName="fileNF" type="file" id="fileArquivoNF" (change)="handleFileInput($event.target.files, 'ArquivoNFe')" required>
-                  </div>
+                    <input formControlName="fileNF" type="file" id="fileArquivoNF"
+                        (change)="handleFileInput($event.target.files, 'ArquivoNFe')" required>
+                </div>
             </div>
             <div class="col-md-4 mb-4 offset-md-2">
                 <label for="validationDefault02">Termo de Aceite (SCANIADO - PDF*)</label>
                 <div class="form-group">
-                    <input formControlName="fileTermo" type="file" id="fileTermoDeAceite" (change)="handleFileInput($event.target.files, 'TermoDeAceite')" required>
-                  </div>
+                    <input formControlName="fileTermo" type="file" id="fileTermoDeAceite"
+                        (change)="handleFileInput($event.target.files, 'TermoDeAceite')" required>
+                </div>
             </div>
         </div>
     </form>
     <div class="col text-center">
-        <button [disabled]="!formInputs.valid" style="background-color:#009b5f;border-radius: 10px;" type="button" class="btn btn-raised btn-success"
-            (click)="cadastrarMaterial()">Finalizar
+        <button [disabled]="!formInputs.valid" style="background-color:#009b5f;border-radius: 10px;" type="button"
+            class="btn btn-raised btn-success" (click)="cadastrarMaterial()">Finalizar
             Venda</button>
     </div>
 </div>
+<div *ngIf="roleId == 1" class="container">
+    <b style="color:rgb(10, 85, 197)">CENTRAL DE VENDAS - MATERIAIS</b>
+    <br>
+    <br>
+    <div class="col-10">
+        <table class="table table-sm table-responsive-sm table-hover">
+            <thead style="background-color:#2c77bd">
+                <tr>
+                    <th class="text-light" scope="col">USUÁRIO</th>
+                    <th class="text-light" scope="col">DATA</th>
+                    <th class="text-light" scope="col">N° NF</th>
+                    <th class="text-light" scope="col">VALOR TOTAL</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ListaDeUploads">
+                    <td>{{item.materiais[0].usuario.fullName}}</td>
+                    <td>{{item.materiais[0].dataEmissao | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{item.materiais[0].numeroDaNota}}</td>
+                    <td>{{item.materiais[0].valorTotal | currency:'BRL':true}}</td>
+                    <button class="btn btn-secondary" type="submit"><i class="fas fa-search"></i></button>
+                </tr>
+            </tbody>
+        </table>
+    </div>

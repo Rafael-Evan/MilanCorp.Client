@@ -21,6 +21,10 @@ export class MaterialService {
       .post(`${this.baseUrl}/cadastrarMaterial`, model);
   }
 
+  ListarMateriais() {
+    return this.http.get(`${this.baseUrl}`);
+  }
+
   postFile(fileToUpload: Array<FileUpload>, NomeDaPasta: any) {
     const formData: FormData = new FormData();
     formData.append('Materiais', NomeDaPasta);

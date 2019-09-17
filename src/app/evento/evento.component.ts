@@ -21,12 +21,12 @@ export class EventoComponent implements OnInit {
     , private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.validation();
+    this.validacao();
 
     this.authService.listarEventos();
   }
 
-  validation() {
+  validacao() {
     this.cadastrarEventoForm = this.fb.group({
       title: [''],
       start: [''],

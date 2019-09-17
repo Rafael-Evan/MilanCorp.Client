@@ -7,6 +7,7 @@ import { FileUpload } from 'src/app/_models/FileUpload';
 import Swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { MilanxAuthService } from 'src/app/_services/milanx-auth.service';
+import { UploadService } from 'src/app/_services/upload.service';
 
 
 @Component({
@@ -26,6 +27,8 @@ export class MateriaisComponent implements OnInit {
   i = 0;
   NomeDaPasta: String;
   userName: String;
+  roleId: any;
+  ListaDeUploads: any;
 
 
   fileUp: Array<FileUpload> = [];
@@ -52,11 +55,24 @@ export class MateriaisComponent implements OnInit {
     , public router: Router
     , private toastr: ToastrService
     , private location: Location
-    , private authServiceX: MilanxAuthService) { }
+    , private authServiceX: MilanxAuthService
+    , private uploadService: UploadService) { }
 
   ngOnInit() {
-    this.validation();
+    this.validacao();
+    this.VerificarTipoDeUsuario();
+    this.ListarUploads();
   }
+
+  // tslint:disable-next-line: member-ordering
+  formCadastrarMateriais = new FormGroup({
+    DataDaEmissao: new FormControl(),
+    NumeroNF: new FormControl(),
+    DescricaoDoItem: new FormControl(),
+    Valor: new FormControl(),
+    Quantidade: new FormControl(),
+    ValorTotal: new FormControl(),
+  });
 
   formInputs = new FormGroup({
     fileNF: new FormControl(),
@@ -79,7 +95,7 @@ export class MateriaisComponent implements OnInit {
     this.fieldArray.splice(index, 300);
   }
 
-  validation() {
+  validacao() {
     this.cadastrarMaterialForm = this.fb.group({
       dataEmissao: [''],
       numeroDaNota: [''],
@@ -87,6 +103,30 @@ export class MateriaisComponent implements OnInit {
       valor: [''],
       quantidade: [''],
     });
+  }
+
+  ListarUploads() {
+    this.uploadService.ListarUploads().subscribe(
+      (data => {
+        // tslint:disable-next-line: no-unused-expression
+        this.ListaDeUploads = data;
+      })
+      , error => {
+        console.log('Erro ao carregar a lista de materiais!');
+      }
+    );
+  }
+
+  VerificarTipoDeUsuario() {
+    this.userName = sessionStorage.getItem('username');
+
+    this.authServiceX.listarUsuarioPeloUserName(this.userName).subscribe(
+      (data => {
+        this.roleId = data[0][0].roleId;
+      }), error => {
+        console.log('Erro ao verificar o tipo de usuario!');
+      }
+    );
   }
 
   cadastrarMaterial() {
