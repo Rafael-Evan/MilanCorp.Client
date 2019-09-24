@@ -150,6 +150,7 @@ export class MateriaisComponent implements OnInit {
                   'Venda finalizada com sucesso :)',
                   'success'
                 );
+                location.reload();
               }, error => {
                 Swal.fire(
                   'Cancelado!',
