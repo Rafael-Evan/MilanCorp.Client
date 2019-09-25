@@ -3,6 +3,7 @@ import { EventoService } from '../_services/evento.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -22,8 +23,24 @@ export class EventoComponent implements OnInit {
 
   ngOnInit() {
     this.validacao();
-
     this.authService.listarEventos();
+
+    $('.divcorp').hide();
+    $('.divcliente').hide();
+
+    $('input[id="Corporativo"]').change(function() {
+      if ($("input[id=Corporativo][value='Sim']").prop("checked",true)) {
+          $('.divcorp').show();
+          $('.divcliente').hide();
+      }
+  });
+
+    $('input[id="Cliente"]').change(function() {
+      if ($("input[id=Cliente][value='Sim']").prop("checked",true)) {
+          $('.divcliente').show();
+          $('.divcorp').hide();
+      }
+  });
   }
 
   validacao() {
@@ -31,6 +48,11 @@ export class EventoComponent implements OnInit {
       title: [''],
       start: [''],
       end: [''],
+      leilao: [''],
+      nomeDoComitente: [''],
+      observacao: [''],
+      endereco: [''],
+      tipoDeLeilao: ['']
     });
   }
 
