@@ -2,11 +2,43 @@
   <div class="container">
     <div class="row">
       <div class="col-11">
-        <img src="assets/img/ford_banner.png" height="160px" width="1015px" class="border border-dark">
+        <img src="assets/img/ford_banner.jpg" class="border border-dark">
         <br>
         <br>
+        <!-- Modal -->
+        <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalhes do Evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <dl class="row">
+                  <dt class="col-sm-4">Título do evento</dt>
+                  <dd class="col-sm-8" id="title"></dd>
+
+                  <dt class="col-sm-4">Comitente</dt>
+                  <dd class="col-sm-8" id="nomeDoComitente"></dd>
+
+                  <dt class="col-sm-4">Tipo do Leilão</dt>
+                  <dd class="col-sm-8" id="tipoDeLeilao"></dd>
+
+                  <dt class="col-sm-4">Início do evento</dt>
+                  <dd class="col-sm-8" id="start"></dd>
+
+                  <dt class="col-sm-4">Fim do evento</dt>
+                  <dd class="col-sm-8" id="end"></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-5">
             <div class="card text-left">
               <div class="card-header text-white" style="background-color:#051a4b">
                 EVENTOS
@@ -18,7 +50,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 ml-auto">
+          <div class="col-md-5 ml-auto">
             <div class="card">
               <div class="card-header text-white" style="background-color:#051a4b">
                 MINHAS SOLICITAÇÕES

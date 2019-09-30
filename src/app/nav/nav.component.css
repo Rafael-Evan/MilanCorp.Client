@@ -4,6 +4,44 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
  
+ * {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+form.example input[type=text] {
+  padding: 4px;
+  font-size: 15px;
+  border: 1px solid grey;
+  float: left;
+  width: 87%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 13%;
+  padding: 4px;
+  background: rgb(255, 255, 255);
+  color: rgb(82, 82, 82);
+  font-size: 15px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: rgb(226, 225, 225);
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+ 
   #page-content-wrapper {
     min-width: 100vw;
   }
@@ -25,8 +63,9 @@
   }
 
   .sidenav {
-    width: 165px;
-    position: fixed;
+    width: 190px;
+    height: 680px;
+    position: absolute;
     z-index: 1;
     background: #eee;
     overflow-x: hidden;
@@ -37,7 +76,7 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 12px;
-    color: rgb(97, 111, 122);
+    color: rgb(90, 100, 109);
     display: block;
   }
   
@@ -46,12 +85,12 @@
   }
   
   .main {
-    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    margin-left: 180px; /* Same width as the sidebar + left position in px */
     font-size: 16px; /* Increased text to enable scrolling */
     padding: 0px 10px;
   }
   
-  @media screen and (max-height: 450px) {
+  @media screen and (max-height: 16px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }

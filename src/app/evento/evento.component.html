@@ -1,91 +1,107 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5 mb-4">
+    <div class="col-md-6 mb-1">
       <div class="card">
         <div class="card-header text-white" style="background-color:#051a4b">
           CADASTRAR NOVO EVENTO
         </div>
-        <form [formGroup]="cadastrarEventoForm">
-            <div class="col-md-9 mb-4">
+        <div class="col-md-9 mb-4">
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="Corporativo" name="radio" value="Sim">
+            <label class="form-check-label">Corporativo</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="Cliente" name="radio" value="Sim">
+            <label class="form-check-label">Cliente</label>
+          </div>
+        </div>
+        <form [formGroup]="cadastrarEventoClienteForm">
+          <div class="divcliente">
+            <div class="col-md-8 mb-4">
+              <label for="validationDefault03">Nome do Evento</label>
+              <input type="text" formControlName="title" class="form-control" id="title" required>
+            </div>
+            <div class="col-md-8 mb-4">
+              <label for="validationDefault02">Data Inicial</label>
+              <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
+            </div>
+            <div class="col-md-8 mb-4">
+              <label for="validationDefault02">Data Final</label>
+              <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
+            </div>
+            <div class="col-md-8 mb-6">
+              <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-primary btn-sm"
+                (click)="cadastrarEvento()">Adicionar Evento</button>
+            </div>
+          </div>
+        </form>
+        <form [formGroup]="cadastrarEventoCorpForm">
+          <div class="divcorp">
+            <!-- <div class="col-md-11 mb-3">
+              <label for="validationDefault03">Comitente</label>
               <br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="Corporativo" name="radio" value="Sim">
-                <label class="form-check-label">Corporativo</label>
+              <div class="input-group mb-3">
+                <select class="custom-select" name="ncomitente" id="ncomitente" formControlName="nomeDoComitente">
+                  <option *ngFor="let comitente of comitentes" [value]="comitente.nome">{{comitente.nome}}</option>
+                </select>
               </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="Cliente" name="radio" value="Sim">
-                <label class="form-check-label">Cliente</label>
+            </div> -->
+            <div class="row col-md-12 mb-3">
+              <div class="col">
+                <label for="validationDefault03">Nome do Leilão</label>
+                <input type="text" formControlName="title" class="form-control" id="title" required>
               </div>
-              </div>
-              <div class="divcliente">
-                  <div class="col-md-9 mb-4">
-                      <label for="validationDefault03">Nome do Evento</label>
-                      <input type="text" formControlName="title" class="form-control" id="title" required>
-                    </div>
-                <div class="col-md-9 mb-4">
-                  <label for="validationDefault02">Data Inicial</label>
-                  <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
-                </div>
-                <div class="col-md-9 mb-4">
-                    <label for="validationDefault02">Data Final</label>
-                    <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
-                  </div>
-                <div class="col-md-8 mb-6">
-                  <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-primary btn-sm" (click)="cadastrarEvento()">Adicionar Evento</button>
+              <div class="col">
+                <label for="validationDefault03">Comitente</label>
+                <br>
+                <div class="input-group mb-3">
+                  <select class="custom-select" name="ncomitente" id="ncomitente" formControlName="nomeDoComitente">
+                    <option *ngFor="let comitente of comitentes" [value]="comitente.nome">{{comitente.nome}}</option>
+                  </select>
                 </div>
               </div>
-              <div class="divcorp">
-                      <div class="row col-md-12 mb-3">
-                        <div class="col">
-                            <label for="validationDefault03">Comitente</label>
-                            <input type="text" formControlName="nomeDoComitente" class="form-control" id="nomeDoComitente" required>
-                        </div>
-                        <div class="col">
-                            <label for="validationDefault03">Nome</label>
-                            <input type="text" formControlName="title" class="form-control" id="title" required>
-                        </div>
-                      </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="validationDefault02">Data</label>
-                        <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
-                      </div>
-                      <div class="col-md-9 mb-3">
-                          <label for="validationDefault03">Endereço</label>
-                          <input type="text" formControlName="endereco" class="form-control" id="endereco" required>
-                        </div>
-                        <div class="col-md-9 mb-3">
-                            <label for="validationDefault03">Tipo de Leilão</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1">
-                                <label class="form-check-label" for="inlineCheckbox1">Imóveis</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="2">
-                                <label class="form-check-label" for="inlineCheckbox2">Veículos</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="3">
-                                <label class="form-check-label" for="inlineCheckbox3">Materiais</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="4">
-                                  <label class="form-check-label" for="inlineCheckbox4">Outros</label>
-                                </div>
-                            <input type="text" formControlName="tipoDeLeilao" class="form-control" id="tipoDeLeilao" required>
-                          </div>
-                          <div class="col-md-9 mb-2">
-                              <label for="validationDefault03">Observações</label>
-                              <input type="text" formControlName="observacao" class="form-control" id="observacao" required>
-                            </div>
-                <div class="col-md-8 mb-6">
-                  <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-success btn-sm" (click)="cadastrarEvento()">Adicionar Evento</button>
-                </div>
+            </div>
+            <div class="row col-md-12 mb-3">
+              <div class="col-6">
+                <label for="validationDefault03">Data Início do Leilão</label>
+                <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
               </div>
+              <div class="col-6">
+                <label for="validationDefault03">Data Final do Leilão</label>
+                <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
+              </div>
+            </div>
+            <div class="col-md-11 mb-3">
+              <label for="validationDefault03">Endereço</label>
+              <input type="text" formControlName="endereco" class="form-control" id="endereco" required>
+            </div>
+            <div class="col-md-11 mb-3">
+              <label for="validationDefault03">Tipo de Leilão</label>
+              <br>
+              <div class="input-group mb-3">
+                <select (ngModelChange)="mostraCampo($event)" class="custom-select" name="tipoDeLeilao" id="tipoDeLeilao" formControlName="tipoDeLeilao"
+                  required>
+                  <option *ngFor="let tipoLeilao of tipoDeLeilao" [value]="tipoLeilao.nome">{{tipoLeilao.nome}}</option>
+                </select>
+                <br>
+                <div class="col-md-7">
+                  <input formControlName="tipoDeLeilao" placeholder="Outros" type="textinput" id="outros" style='display:none' class="form-control input-md"> </div>
+              </div>
+            </div>
+            <div class="col-md-11 mb-2">
+              <label for="validationDefault03">Observações</label>
+              <input type="text" formControlName="observacao" class="form-control" id="observacao" required>
+            </div>
+            <div class="col-md-8 mb-6">
+              <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-success btn-sm"
+                (click)="cadastrarEvento()">Adicionar Evento</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
-    <div class="col-md-4 ml-auto">
+    <div class="col-md-5 ml-auto">
       <div class="card text-left">
         <div class="card-header text-white" style="background-color:#051a4b">
           LISTA DE EVENTOS

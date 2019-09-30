@@ -1,20 +1,20 @@
 <div class="d-flex" id="wrapper">
     <div *ngIf="loggedIn()" class="sidenav">
-        <div class="text-center list-group list-group-flush">
+        <div class="text-center list-group">
             <b class="sidebar-brand">
                 <img src="assets/img/user_profile.png" width="60px" alt="">
                 <br>
                 <b><a style="color: rgb(27, 76, 133)" href="#">MEUS DADOS</a></b>
             </b>
             <br>
-            <b><a style="color: rgb(85, 97, 109)">ADMINISTRATIVO</a></b>
-            <ul>
+            <b><a style="color: rgb(81, 90, 100)">ADMINISTRATIVO</a></b>
+            <ul class="text-justify">
+                <li><a routerLink="home">Home</a></li>
                 <li><a href="#">Reserva das Salas</a></li>
                 <li><a routerLink="evento">Eventos</a></li>
             </ul>
-            <br>
-            <b><a style="color: rgb(85, 97, 109)">MEUS LEILÕES</a></b>
-            <ul>
+            <b><a style="color: rgb(81, 90, 100)">MEUS LEILÕES</a></b>
+            <ul class="text-justify">
                 <li><a routerLink="vendas/menu">Vendas</a></li>
                 <li><a href="#">Compras</a></li>
             </ul>
@@ -23,8 +23,11 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <nav style="background-color: #051a4b" class="navbar navbar-expand-lg border-bottom mb-2">
-            <div style="background-color: #051a4b" class="sidebar-heading">
+            <div *ngIf="!loggedIn()" style="background-color: #051a4b" class="sidebar-heading">
                 <a><img src="assets/img/milanx_branco.png" width="95px"></a>
+            </div>
+            <div *ngIf="loggedIn()" style="background-color: #051a4b" class="sidebar-heading">
+                <a routerLink="home"><img src="assets/img/milanx_branco.png" width="95px"></a>
             </div>
             <div class="container-fluid">
                 <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
@@ -35,9 +38,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div *ngIf="loggedIn()" class="bmd-form-group bmd-collapse-inline col-md-3 offset-md-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control-file" placeholder="Pesquisar">
-                        </div>
+
+                            <form class="example" action="action_page.php">
+                                    <input type="text" placeholder="Pesquisar" name="search">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                  </form>
                     </div>
                     <ul *ngIf="loggedIn()" class="nav navbar-nav ml-auto">
                         <li class="nav-item">
