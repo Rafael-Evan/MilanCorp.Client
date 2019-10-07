@@ -9,6 +9,7 @@ import { ImoveisComponent } from './vendas/imoveis/imoveis.component';
 import { MateriaisComponent } from './vendas/materiais/materiais.component';
 import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component';
 import { EventoComponent } from './evento/evento.component';
+import { AniversarianteComponent } from './aniversariante/aniversariante.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   },
   { path: 'home', component: HomeComponent },
   {path: 'evento', component: EventoComponent},
+  {path: 'aniversariante', component: AniversarianteComponent},
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'user/login' }
 ];

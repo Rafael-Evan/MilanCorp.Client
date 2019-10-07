@@ -21,6 +21,7 @@ import { MateriaisComponent } from './vendas/materiais/materiais.component';
 import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component';
 import { EventoComponent } from './evento/evento.component';
 import { DetalhesDaVendaComponent } from './vendas/materiais/detalhes-da-venda/detalhes-da-venda.component';
+import { AniversarianteComponent } from './aniversariante/aniversariante.component';
 
 @NgModule({
    declarations: [
@@ -36,6 +37,7 @@ import { DetalhesDaVendaComponent } from './vendas/materiais/detalhes-da-venda/d
       VendasMenuComponent,
       EventoComponent,
       DetalhesDaVendaComponent,
+      AniversarianteComponent,
    ],
    imports: [
       BrowserModule,

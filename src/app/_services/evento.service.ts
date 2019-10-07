@@ -42,7 +42,7 @@ export class EventoService {
         right: 'today,dayGridMonth,dayGridDay',
       },
       locale: brLocale,
-      defaultDate: '2019-08-15',
+      defaultDate: new Date(),
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       selectable: true,
@@ -60,7 +60,8 @@ export class EventoService {
             alert('there was an error while fetching events!');
           },
           color: 'skyblue',   // a non-ajax option
-          textColor: 'black' // a non-ajax option
+          textColor: 'black',
+          allDayDefault: true
         }
       ]
     });
@@ -90,7 +91,8 @@ export class EventoService {
             alert('there was an error while fetching events!');
           },
           color: 'skyblue',   // a non-ajax option
-          textColor: 'black' // a non-ajax option
+          textColor: 'black',
+          allDayDefault: true
         }
       ]
     });

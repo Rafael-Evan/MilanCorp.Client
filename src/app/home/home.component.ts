@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../_services/evento.service';
+import { AniversarianteService } from '../_services/aniversariante.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,9 @@ import { EventoService } from '../_services/evento.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: EventoService) { }
+  constructor(private EventoService: EventoService) { }
 
   ngOnInit() {
-    this.authService.Eventos();
+    this.EventoService.Eventos();
   }
 }
