@@ -59,8 +59,6 @@ export class EventoComponent implements OnInit {
     this.cadastrarEventoCorpForm = this.fb.group({
       title: [''],
       start: [''],
-      end: [''],
-      leilao: [''],
       nomeDoComitente: [''],
       observacao: [''],
       endereco: [''],
@@ -88,7 +86,7 @@ export class EventoComponent implements OnInit {
   cadastrarEvento() {
     if (this.cadastrarEventoCorpForm.valid) {
       this.evento = Object.assign(this.cadastrarEventoCorpForm.value);
-      this.authService.CadastrarEvento(this.evento).subscribe(
+      this.authService.CadastrarEventoLeilao(this.evento).subscribe(
         () => {
           this.cadastrarEventoCorpForm.reset();
           this.toastr.success('Evento cadastro com sucesso!');

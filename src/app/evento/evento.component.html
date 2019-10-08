@@ -38,15 +38,6 @@
         </form>
         <form [formGroup]="cadastrarEventoCorpForm">
           <div class="divcorp">
-            <!-- <div class="col-md-11 mb-3">
-              <label for="validationDefault03">Comitente</label>
-              <br>
-              <div class="input-group mb-3">
-                <select class="custom-select" name="ncomitente" id="ncomitente" formControlName="nomeDoComitente">
-                  <option *ngFor="let comitente of comitentes" [value]="comitente.nome">{{comitente.nome}}</option>
-                </select>
-              </div>
-            </div> -->
             <div class="row col-md-12 mb-3">
               <div class="col">
                 <label for="validationDefault03">Nome do Leilão</label>
@@ -64,12 +55,8 @@
             </div>
             <div class="row col-md-12 mb-3">
               <div class="col-6">
-                <label for="validationDefault03">Data Início do Leilão</label>
-                <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
-              </div>
-              <div class="col-6">
-                <label for="validationDefault03">Data Final do Leilão</label>
-                <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
+                <label for="validationDefault03">Data do Leilão</label>
+                <input type="date" formControlName="start" class="form-control" id="start" required>
               </div>
             </div>
             <div class="col-md-11 mb-3">

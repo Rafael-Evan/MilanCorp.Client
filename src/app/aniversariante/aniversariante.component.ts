@@ -8,10 +8,10 @@ import { AniversarianteService } from '../_services/aniversariante.service';
 })
 export class AniversarianteComponent implements OnInit {
 
-  constructor(private AniversarianteService: AniversarianteService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.AniversarianteService.Aniversariantes();
+
   }
 
 }

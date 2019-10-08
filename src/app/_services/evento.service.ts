@@ -6,13 +6,17 @@ import brLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { environment } from 'src/environments/environment';
 import * as $ from 'jquery';
-declare var $:any;
+declare var $: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
   private baseUrl = `${environment.apiUrl}evento`;
+
+  private baseUrlEventoLeilao = `${environment.apiUrl}eventoleilao`;
+
+  private baseUrlAniversariantes = `${environment.apiUrl}aniversariante`;
 
   constructor(private http: HttpClient) { }
 
@@ -24,15 +28,34 @@ export class EventoService {
     const calendar = new Calendar(calendarEl, {
       eventClick(info) {
         info.jsEvent.preventDefault();
-        (<any> $("#visualizar #title")).text(info.event.title);
-        (<any> $("#visualizar #start")).text(info.event.start != null ? info.event.start.toLocaleString() : '');
-        (<any> $("#visualizar #end")).text(info.event.end != null ? info.event.end.toLocaleString() : '');
-        (<any> $("#visualizar #nomeDoComitente")).text(info.event.extendedProps.nomeDoComitente);
-        (<any> $("#visualizar #tipoDeLeilao")).text(info.event.extendedProps.tipoDeLeilao);
-        (<any> $("#visualizar")).modal();
+        // tslint:disable-next-line: no-conditional-assignment
+        if (info.event.extendedProps.ativo != null) {
+          let options = { month: 'long', day: 'numeric' };
+          (<any>$("#aniversariante #title")).text(info.event.title);
+          (<any>$("#aniversariante #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
+          (<any>$("#aniversariante")).modal();
 
-        // change the border color just for fun
-        info.el.style.borderColor = 'black';
+          // change the border color just for fun
+          info.el.style.borderColor = 'black';
+        } else if (info.event.extendedProps.nomeDoComitente != null && info.event.extendedProps.tipoDeLeilao != null) {
+          (<any>$("#leilao #title")).text(info.event.title);
+          (<any>$("#leilao #start")).text(info.event.start != null ? info.event.start.toLocaleDateString() : '');
+          (<any>$("#leilao #nomeDoComitente")).text(info.event.extendedProps.nomeDoComitente);
+          (<any>$("#leilao #tipoDeLeilao")).text(info.event.extendedProps.tipoDeLeilao);
+          (<any>$("#leilao")).modal();
+
+          // change the border color just for fun
+          info.el.style.borderColor = 'black';
+        } else {
+          (<any>$("#evento #title")).text(info.event.title);
+          (<any>$("#evento #start")).text(info.event.start != null ? info.event.start.toLocaleString() : '');
+          (<any>$("#evento #end")).text(info.event.end != null ? info.event.end.toLocaleString() : '');
+          (<any>$("#evento")).modal();
+
+          // change the border color just for fun
+          info.el.style.borderColor = 'black';
+        }
+
       },
 
       plugins: [dayGridPlugin],
@@ -59,7 +82,35 @@ export class EventoService {
           error() {
             alert('there was an error while fetching events!');
           },
-          color: 'skyblue',   // a non-ajax option
+          color: 'DodgerBlue', // a non-ajax option
+          textColor: 'black',
+          allDayDefault: true
+        },
+        {
+          url: this.baseUrlAniversariantes + '/' + 'AniversarianteAnoAtual',
+          type: 'GET',
+          data: {
+            custom_param1: 'something',
+            custom_param2: 'somethingelse'
+          },
+          error() {
+            alert('there was an error while fetching events!');
+          },
+          color: 'SpringGreen',   // a non-ajax option
+          textColor: 'black',
+          allDayDefault: true
+        },
+        {
+          url: this.baseUrlEventoLeilao,
+          type: 'GET',
+          data: {
+            custom_param1: 'something',
+            custom_param2: 'somethingelse'
+          },
+          error() {
+            alert('there was an error while fetching events!');
+          },
+          color: '#eead2d',   // a non-ajax option
           textColor: 'black',
           allDayDefault: true
         }
@@ -91,10 +142,9 @@ export class EventoService {
             alert('there was an error while fetching events!');
           },
           color: 'skyblue',   // a non-ajax option
-          textColor: 'black',
-          allDayDefault: true
+          textColor: 'black'
         }
-      ]
+      ],
     });
     calendar.render();
   }
@@ -102,6 +152,11 @@ export class EventoService {
   CadastrarEvento(model: any) {
     return this.http
       .post(`${this.baseUrl}/cadastrarEvento`, model);
+  }
+
+  CadastrarEventoLeilao(model: any) {
+    return this.http
+      .post(`${this.baseUrlEventoLeilao}/cadastrarEventoLeilao`, model);
   }
 
   TipoDeLeilao() {

@@ -6,7 +6,7 @@
         <br>
         <br>
         <!-- Modal -->
-        <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -18,20 +18,66 @@
               </div>
               <div class="modal-body">
                 <dl class="row">
-                  <dt class="col-sm-4">Título do evento</dt>
+                  <dt class="col-sm-5">Nome do Evento:</dt>
+                  <dd class="col-sm-7" id="title"></dd>
+
+                  <dt class="col-sm-5">Data Inicial:</dt>
+                  <dd class="col-sm-7" id="start"></dd>
+
+                  <dt class="col-sm-5">Data Final:</dt>
+                  <dd class="col-sm-7" id="start"></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="aniversariante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="text-center" id="exampleModalLabel"><i class="fas fa-gift"></i> Aniversariante do dia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <dl class="row">
+                  <dt class="col-sm-4">Nome Completo:</dt>
                   <dd class="col-sm-8" id="title"></dd>
 
-                  <dt class="col-sm-4">Comitente</dt>
+                  <dt class="col-sm-5">Data De Nascimento:</dt>
+                  <dd class="col-sm-7" id="start"></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="leilao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalhes do Leilão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <dl class="row">
+                  <dt class="col-sm-4">Nome do Leilão:</dt>
+                  <dd class="col-sm-8" id="title"></dd>
+
+                  <dt class="col-sm-4">Comitente:</dt>
                   <dd class="col-sm-8" id="nomeDoComitente"></dd>
 
-                  <dt class="col-sm-4">Tipo do Leilão</dt>
+                  <dt class="col-sm-4">Tipo do Leilão:</dt>
                   <dd class="col-sm-8" id="tipoDeLeilao"></dd>
 
-                  <dt class="col-sm-4">Início do evento</dt>
+                  <dt class="col-sm-4">Data do Leilão</dt>
                   <dd class="col-sm-8" id="start"></dd>
-
-                  <dt class="col-sm-4">Fim do evento</dt>
-                  <dd class="col-sm-8" id="end"></dd>
                 </dl>
               </div>
             </div>

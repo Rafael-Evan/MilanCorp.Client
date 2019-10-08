@@ -3,7 +3,6 @@ export class Evento {
     start: Date;
     end: Date;
     finished: boolean;
-    leilao: string;
     nomeDoComitente: string;
     observacao: string;
     endereco: string;
