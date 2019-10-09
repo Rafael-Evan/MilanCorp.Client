@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="card">
+                <div class="card-header text-white" style="background-color:#051a4b">
+                    IMPORTAR ANIVERSARIANTES
+                </div>
+                <div class="col-md-9 mb-4">
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="Lista" name="radio" value="Sim">
+                        <label class="form-check-label">Importar Lista</label>
+                    </div>
+                    <div class="custom-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="Manual" name="radio" value="Sim">
+                        <label class="form-check-label">Importar Manualmente</label>
+                    </div>
+                </div>
+                <div class="divlista">
+                    <form [formGroup]="cadastrarAniversarianteListForm">
+                    <div class="row col-md-12 mb-3">
+                        <div class="col">
+                            <div class="form-group">
+                                <input formControlName="arquivo" type="file" id="file" (change)="handleFileInput($event.target.files)">
+                            </div>
+                            <button style="background-color:#051a4b;border-radius: 10px;" type="submit"
+                                class="btn btn-raised btn-success" (click)="AniversariantesUpload()">Importar
+                                Aniversariantes</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <form [formGroup]="cadastrarAniversarianteForm">
+                    <div class="divmanual">
+                        <div class="row col-md-12 mb-3">
+                            <div class="col-10">
+                                <label for="validationDefault03">Nome Completo</label>
+                                <input type="text" formControlName="title" class="form-control" id="title" required>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 mb-3">
+                            <div class="col-10">
+                                <label for="validationDefault03">Data de Nascimento</label>
+                                <input type="date" formControlName="start" class="form-control" id="start" required>
+                            </div>
+                        </div>
+                        <div class="col-md-8 mb-6">
+                            <button style="background-color: #051a4b;border-radius: 10px;"
+                                class="btn btn-raised btn-success btn-sm" (click)="cadastrarAniversariante()">Adicionar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
