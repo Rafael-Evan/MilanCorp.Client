@@ -18,6 +18,8 @@ export class EventoService {
 
   private baseUrlAniversariantes = `${environment.apiUrl}aniversariante`;
 
+  private baseUrlReunioes = `${environment.apiUrl}reuniao`;
+
   constructor(private http: HttpClient) { }
 
 
@@ -46,10 +48,21 @@ export class EventoService {
 
           // change the border color just for fun
           info.el.style.borderColor = 'black';
+        } else if (info.event.extendedProps.departamento != null && info.event.extendedProps.sala != null) {
+          (<any>$("#reuniao #title")).text(info.event.title);
+          (<any>$("#reuniao #departamento")).text(info.event.extendedProps.departamento);
+          (<any>$("#reuniao #sala")).text(info.event.extendedProps.sala);
+          (<any>$("#reuniao #start")).text(info.event.start != null ? info.event.start.toLocaleDateString() : '');
+          (<any>$("#reuniao #end")).text(info.event.end != null ? info.event.end.toLocaleDateString() : '');
+          (<any>$("#reuniao")).modal();
+
+          // change the border color just for fun
+          info.el.style.borderColor = 'black';
         } else {
+          let options = { month: 'long', day: 'numeric', year: 'numeric' };
           (<any>$("#evento #title")).text(info.event.title);
-          (<any>$("#evento #start")).text(info.event.start != null ? info.event.start.toLocaleString() : '');
-          (<any>$("#evento #end")).text(info.event.end != null ? info.event.end.toLocaleString() : '');
+          (<any>$("#evento #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
+          (<any>$("#evento #end")).text(info.event.end != null ? (info.event.end.toLocaleDateString('pt-BR', options)) : '');
           (<any>$("#evento")).modal();
 
           // change the border color just for fun
@@ -113,7 +126,21 @@ export class EventoService {
           color: '#eead2d',   // a non-ajax option
           textColor: 'black',
           allDayDefault: true
-        }
+        },
+        {
+          url: this.baseUrlReunioes,
+          type: 'GET',
+          data: {
+            custom_param1: 'something',
+            custom_param2: 'somethingelse'
+          },
+          error() {
+            alert('there was an error while fetching events!');
+          },
+          color: '#800080', // a non-ajax option
+          textColor: 'black',
+          allDayDefault: true
+        },
       ]
     });
     calendar.render();

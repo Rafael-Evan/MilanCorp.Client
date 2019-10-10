@@ -22,6 +22,7 @@ import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component'
 import { EventoComponent } from './evento/evento.component';
 import { DetalhesDaVendaComponent } from './vendas/materiais/detalhes-da-venda/detalhes-da-venda.component';
 import { AniversarianteComponent } from './aniversariante/aniversariante.component';
+import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.component';
 
 @NgModule({
    declarations: [
@@ -38,6 +39,7 @@ import { AniversarianteComponent } from './aniversariante/aniversariante.compone
       EventoComponent,
       DetalhesDaVendaComponent,
       AniversarianteComponent,
+      SalaDeReuniaoComponent,
    ],
    imports: [
       BrowserModule,
