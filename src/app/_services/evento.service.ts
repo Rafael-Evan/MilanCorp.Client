@@ -49,17 +49,19 @@ export class EventoService {
           // change the border color just for fun
           info.el.style.borderColor = 'black';
         } else if (info.event.extendedProps.departamento != null && info.event.extendedProps.sala != null) {
+          let options = { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
           (<any>$("#reuniao #title")).text(info.event.title);
+          (<any>$("#reuniao #responsavel")).text(info.event.extendedProps.user.fullName);
           (<any>$("#reuniao #departamento")).text(info.event.extendedProps.departamento);
           (<any>$("#reuniao #sala")).text(info.event.extendedProps.sala);
-          (<any>$("#reuniao #start")).text(info.event.start != null ? info.event.start.toLocaleDateString() : '');
-          (<any>$("#reuniao #end")).text(info.event.end != null ? info.event.end.toLocaleDateString() : '');
+          (<any>$("#reuniao #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
+          (<any>$("#reuniao #end")).text(info.event.end != null ? (info.event.end.toLocaleDateString('pt-BR', options)) : '');
           (<any>$("#reuniao")).modal();
 
           // change the border color just for fun
           info.el.style.borderColor = 'black';
         } else {
-          let options = { month: 'long', day: 'numeric', year: 'numeric' };
+          let options = { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
           (<any>$("#evento #title")).text(info.event.title);
           (<any>$("#evento #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
           (<any>$("#evento #end")).text(info.event.end != null ? (info.event.end.toLocaleDateString('pt-BR', options)) : '');
@@ -96,8 +98,7 @@ export class EventoService {
             alert('there was an error while fetching events!');
           },
           color: 'DodgerBlue', // a non-ajax option
-          textColor: 'black',
-          allDayDefault: true
+          textColor: 'black'
         },
         {
           url: this.baseUrlAniversariantes + '/' + 'AniversarianteAnoAtual',
@@ -138,8 +139,7 @@ export class EventoService {
             alert('there was an error while fetching events!');
           },
           color: '#800080', // a non-ajax option
-          textColor: 'black',
-          allDayDefault: true
+          textColor: 'black'
         },
       ]
     });

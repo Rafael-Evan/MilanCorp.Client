@@ -8,13 +8,13 @@
                 <br>
                 <form [formGroup]="reservarSalaForm">
                     <div class="row col-md-12 mb-3">
-                        <div class="col-10">
+                        <div class="col-12">
                             <label for="validationDefault03">Assunto</label>
                             <input type="text" formControlName="title" class="form-control" id="title" required>
                         </div>
                     </div>
                     <div class="row col-md-12 mb-3">
-                        <div class="col-10">
+                        <div class="col-6">
                             <label for="validationDefault03">Departamentos</label>
                             <br>
                             <select class="custom-select" name="Departamentos" id="Departamentos"
@@ -23,9 +23,7 @@
                                     {{departamento.nome}}</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="row col-md-12 mb-3">
-                        <div class="col-10">
+                        <div class="col-6">
                             <label for="validationDefault03">Sala</label>
                             <br>
                             <select class="custom-select" name="SalaDeReuniao" id="SalaDeReuniao"
@@ -36,17 +34,28 @@
                         </div>
                     </div>
                     <div class="row col-md-12 mb-3">
-                        <div class="col-10">
+                        <div class="col-12">
+                            <label for="validationDefault03">Local</label>
+                            <br>
+                            <select class="custom-select" name="LocalDaReuniao" id="LocalDaReuniao"
+                                formControlName="local">
+                                <option *ngFor="let local of LocalDaReuniao" [value]="local.nome">
+                                    {{local.nome}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 mb-3">
+                        <div class="col-12">
                             <label for="validationDefault03">Data Inical</label>
                             <input type="date" formControlName="data" class="form-control" id="data" required>
                         </div>
                     </div>
                     <div class="row col-md-12 mb-3">
-                        <div class="col-5">
+                        <div class="col-6">
                             <label for="validationDefault03">Início</label>
                             <input type="time" formControlName="start" class="form-control" id="start" required>
                         </div>
-                        <div class="col-5">
+                        <div class="col-6">
                             <label for="validationDefault03">Fim</label>
                             <input type="time" formControlName="end" class="form-control" id="end" required>
                         </div>
@@ -58,4 +67,17 @@
                 </form>
             </div>
         </div>
+        <div class="col-md-5 ml-auto">
+            <div class="card text-left">
+                <div class="card-header text-white" style="background-color:#051a4b">
+                    SALAS RESERVADAS
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
