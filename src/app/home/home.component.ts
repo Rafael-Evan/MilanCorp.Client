@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../_services/evento.service';
 import { AniversarianteService } from '../_services/aniversariante.service';
+import { ClimaTempoService } from '../_services/clima-tempo.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,13 @@ import { AniversarianteService } from '../_services/aniversariante.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private EventoService: EventoService) { }
+  climaTempo: any;
+
+  constructor(private EventoService: EventoService
+    , private ClimaTempoService: ClimaTempoService) { }
 
   ngOnInit() {
     this.EventoService.Eventos();
+    this.climaTempo = this.ClimaTempoService.ListarClimaTempo();
   }
 }

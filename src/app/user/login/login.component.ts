@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     , private toastr: ToastrService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('token') !== null) {
+    if (sessionStorage.getItem('token') !== null) {
       this.router.navigate(['/home']);
     }
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ReuniaoService } from '../_services/reuniao.service';
 import { MilanxAuthService } from '../_services/milanx-auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-sala-de-reuniao',
@@ -11,6 +12,7 @@ import { MilanxAuthService } from '../_services/milanx-auth.service';
 })
 export class SalaDeReuniaoComponent implements OnInit {
 
+  jwtHelper = new JwtHelperService();
   reuniao: any;
   reservarSalaForm: FormGroup;
   Departamentos: any[];
@@ -46,19 +48,17 @@ export class SalaDeReuniaoComponent implements OnInit {
 
   AdicionarReuniao() {
     if (this.reservarSalaForm.valid) {
-      this.userName = sessionStorage.getItem('username');
+      const token = sessionStorage.getItem('token');
+      const decodeToken = this.jwtHelper.decodeToken(token);
       this.reuniao = Object.assign(this.reservarSalaForm.value);
-      this.authServiceX.listarIdDoUsuario(this.userName).subscribe(
-        userId => {
-          this.reuniao.UserId = userId;
-        }),
-        this.authService.AdicionarReuniao(this.reuniao).subscribe(
-          () => {
-            this.reservarSalaForm.reset();
-            this.toastr.success('Reunião cadastra com sucesso!');
-            // tslint:disable-next-line: no-unused-expression
-          }, error => {
-            this.toastr.error('Já existe uma reunião nessa sala e horário!');
+      this.reuniao.UserId = decodeToken.nameid;
+      this.authService.AdicionarReuniao(this.reuniao).subscribe(
+        () => {
+          this.reservarSalaForm.reset();
+          this.toastr.success('Reunião cadastra com sucesso!');
+          // tslint:disable-next-line: no-unused-expression
+        }, error => {
+          this.toastr.error('Já existe uma reunião nessa sala e horário!');
         });
     }
   }

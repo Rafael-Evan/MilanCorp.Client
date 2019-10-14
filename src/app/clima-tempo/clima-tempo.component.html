@@ -1,0 +1,43 @@
+<!-- <div class="container">
+    <div class="row text-center">
+        <div
+            style="background-color: rgb(206, 66, 66); width: 75%; padding: 20px; border: 1px solid rgb(175, 34, 34)197, 118, 118); margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+            <p *ngIf="weather.length == 0">Searching...</p>
+            <div *ngIf="weather.length > 0">
+                <table style="width: 100%; text-align: center">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td *ngFor="let forecast of weather">
+                                <img [src]="forecast.iconLink" />
+                                <p>{{ forecast.highTemperature }}C / {{ forecast.highTemperature | fahrenheit }}F</p>
+                                <p>{{ forecast.utcTime | moment }}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container row">
+        <div
+        style="background-color: rgb(206, 66, 66); width: 75%; padding: 20px; border: 1px solid rgb(175, 34, 34)197, 118, 118); margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+        <p *ngIf="weather.length == 0">Searching...</p>
+        <div *ngIf="weather.length > 0">
+            <table style="width: 100%; text-align: center">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td *ngFor="let forecast of weather">
+                            <img [src]="forecast.iconLink" />
+                            <p>{{ forecast.highTemperature }}C / {{ forecast.highTemperature | fahrenheit }}F</p>
+                            <p>{{ forecast.utcTime | moment }}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

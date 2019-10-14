@@ -61,19 +61,24 @@
             </div>
             <div class="col-md-11 mb-3">
               <label for="validationDefault03">Endereço</label>
-              <input type="text" formControlName="endereco" class="form-control" id="endereco" required>
+              <br>
+              <select class="custom-select" name="LocalDoLeilao" formControlName="endereco" id="endereco" required>
+                <option *ngFor="let local of LocalDoLeilao" [value]="local.nome">
+                  {{local.nome}}</option>
+              </select>
             </div>
             <div class="col-md-11 mb-3">
               <label for="validationDefault03">Tipo de Leilão</label>
               <br>
               <div class="input-group mb-3">
-                <select (ngModelChange)="mostraCampo($event)" class="custom-select" name="tipoDeLeilao" id="tipoDeLeilao" formControlName="tipoDeLeilao"
-                  required>
+                <select (ngModelChange)="mostraCampo($event)" class="custom-select" name="tipoDeLeilao"
+                  id="tipoDeLeilao" formControlName="tipoDeLeilao" required>
                   <option *ngFor="let tipoLeilao of tipoDeLeilao" [value]="tipoLeilao.nome">{{tipoLeilao.nome}}</option>
                 </select>
                 <br>
                 <div class="col-md-7">
-                  <input formControlName="tipoDeLeilao" placeholder="Outros" type="textinput" id="outros" style='display:none' class="form-control input-md"> </div>
+                  <input formControlName="tipoDeLeilao" placeholder="Outros" type="textinput" id="outros"
+                    style='display:none' class="form-control input-md"> </div>
               </div>
             </div>
             <div class="col-md-11 mb-2">

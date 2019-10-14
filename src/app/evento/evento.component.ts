@@ -19,6 +19,7 @@ export class EventoComponent implements OnInit {
   cadastrarEventoClienteForm: FormGroup;
   tipoDeLeilao: any[];
   comitentes: any;
+  LocalDoLeilao: any[];
 
   constructor(private authService: EventoService
     , private comitenteService: ComitenteService
@@ -28,6 +29,7 @@ export class EventoComponent implements OnInit {
 
   ngOnInit() {
     this.validacao();
+    this.LocalDoLeilao = this.authService.LocalDoLeilao();
     this.authService.listarEventos();
     this.tipoDeLeilao = this.authService.TipoDeLeilao();
     // this.comitentes = this.comitenteService.ListarComitentes();

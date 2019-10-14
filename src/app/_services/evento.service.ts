@@ -195,4 +195,11 @@ export class EventoService {
     ]
   }
 
+  LocalDoLeilao() {
+    return [
+      { nome: 'Rua Quatá - Vila Olímpia', id: 1 },
+      { nome: 'Milan Leilões - Pátio Raposo Tavares', id: 2 },
+    ]
+  }
+
 }

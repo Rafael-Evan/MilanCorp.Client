@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { HttpClient, HttpEventType, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FileUpload } from '../_models/FileUpload';
 import { Observable } from 'rxjs';
