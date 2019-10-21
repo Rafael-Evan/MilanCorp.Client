@@ -5,7 +5,8 @@
         <div class="card-header text-white" style="background-color:#051a4b">
           CADASTRAR NOVO EVENTO
         </div>
-        <div class="col-md-9 mb-4">
+        <br>
+        <!-- <div class="col-md-9 mb-4">
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="Corporativo" name="radio" value="Sim">
@@ -15,8 +16,8 @@
             <input class="form-check-input" type="radio" id="Cliente" name="radio" value="Sim">
             <label class="form-check-label">Cliente</label>
           </div>
-        </div>
-        <form [formGroup]="cadastrarEventoClienteForm">
+        </div> -->
+        <!-- <form [formGroup]="cadastrarEventoClienteForm">
           <div class="divcliente">
             <div class="col-md-8 mb-4">
               <label for="validationDefault03">Nome do Evento</label>
@@ -35,7 +36,7 @@
                 (click)="cadastrarEvento()">Adicionar Evento</button>
             </div>
           </div>
-        </form>
+        </form> -->
         <form [formGroup]="cadastrarEventoCorpForm">
           <div class="divcorp">
             <div class="row col-md-12 mb-3">
@@ -83,7 +84,7 @@
             </div>
             <div class="col-md-11 mb-2">
               <label for="validationDefault03">Observações</label>
-              <input type="text" formControlName="observacao" class="form-control" id="observacao" required>
+              <input type="text" formControlName="observacao" class="form-control" id="observacao">
             </div>
             <div class="col-md-8 mb-6">
               <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-success btn-sm"

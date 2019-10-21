@@ -2,7 +2,6 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FileUpload } from '../_models/FileUpload';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

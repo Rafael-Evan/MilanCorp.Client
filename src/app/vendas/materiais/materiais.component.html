@@ -1,4 +1,4 @@
-<div *ngIf="roleId == 2" class="container">
+<div *ngIf="roleId == 1" class="container">
     <b style="color:rgb(10, 85, 197)">CENTRAL DE VENDAS - MATERIAIS</b>
     <br>
     <br>
@@ -112,29 +112,3 @@
             Venda</button>
     </div>
 </div>
-<div *ngIf="roleId == 1" class="container">
-    <b style="color:rgb(10, 85, 197)">CENTRAL DE VENDAS - MATERIAIS</b>
-    <br>
-    <br>
-    <div class="col-10">
-        <table class="table table-sm table-responsive-sm table-hover">
-            <thead style="background-color:#2c77bd">
-                <tr>
-                    <th class="text-light" scope="col">USUÁRIO</th>
-                    <th class="text-light" scope="col">DATA</th>
-                    <th class="text-light" scope="col">N° NF</th>
-                    <th class="text-light" scope="col">VALOR TOTAL</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of ListaDeUploads">
-                    <td>{{item.materiais[0].usuario.fullName}}</td>
-                    <td>{{item.materiais[0].dataEmissao | date: 'dd/MM/yyyy'}}</td>
-                    <td>{{item.materiais[0].numeroDaNota}}</td>
-                    <td>{{item.materiais[0].valorTotal | currency:'BRL':true}}</td>
-                    <button class="btn btn-secondary" type="submit"><i class="fas fa-search"></i></button>
-                </tr>
-            </tbody>
-        </table>
-    </div>

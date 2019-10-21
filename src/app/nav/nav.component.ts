@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MilanxAuthService } from '../_services/milanx-auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class NavComponent implements OnInit {
 
   user: any;
+  jwtHelper = new JwtHelperService();
 
   constructor(public authService: MilanxAuthService
     ,         public router: Router
@@ -22,6 +25,12 @@ export class NavComponent implements OnInit {
 
   loggedIn() {
     return this.authService.loggedIn();
+  }
+
+  userRole() {
+    const token = sessionStorage.getItem('token');
+    const decodeToken = this.jwtHelper.decodeToken(token);
+    return decodeToken.role;
   }
 
   logout() {

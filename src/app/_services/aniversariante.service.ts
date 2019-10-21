@@ -17,7 +17,7 @@ export class AniversarianteService {
 
     ImportarAniversariantes(fileToUpload: File) {
         const formData: FormData = new FormData();
-        formData.append('fileKey', fileToUpload, fileToUpload.name);
+        formData.append('file', fileToUpload, fileToUpload.name);
         return this.http
             .post(this.baseUrl + '/ImportarAniversariantes', formData);
     }

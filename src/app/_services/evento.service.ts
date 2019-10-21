@@ -53,24 +53,16 @@ export class EventoService {
           (<any>$("#reuniao #title")).text(info.event.title);
           (<any>$("#reuniao #responsavel")).text(info.event.extendedProps.user.fullName);
           (<any>$("#reuniao #departamento")).text(info.event.extendedProps.departamento);
-          (<any>$("#reuniao #sala")).text(info.event.extendedProps.sala);
+          (<any>$("#reuniao #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
+          // tslint:disable-next-line: max-line-length
+          (<any>$("#reuniao #sala")).text(info.event.extendedProps.sala == 1 ? 'São Paulo' : info.event.extendedProps.sala == 2 ? 'Dubai' : info.event.extendedProps.sala == 3 ? 'Milão' : info.event.extendedProps.sala == 4 ? 'Paris' : '');
           (<any>$("#reuniao #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
           (<any>$("#reuniao #end")).text(info.event.end != null ? (info.event.end.toLocaleDateString('pt-BR', options)) : '');
           (<any>$("#reuniao")).modal();
 
           // change the border color just for fun
           info.el.style.borderColor = 'black';
-        } else {
-          let options = { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
-          (<any>$("#evento #title")).text(info.event.title);
-          (<any>$("#evento #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
-          (<any>$("#evento #end")).text(info.event.end != null ? (info.event.end.toLocaleDateString('pt-BR', options)) : '');
-          (<any>$("#evento")).modal();
-
-          // change the border color just for fun
-          info.el.style.borderColor = 'black';
         }
-
       },
 
       plugins: [dayGridPlugin],

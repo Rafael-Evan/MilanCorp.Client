@@ -38,22 +38,22 @@ export class EventoComponent implements OnInit {
       this.comitentes = data;
     });
 
-    $('.divcorp').hide();
-    $('.divcliente').hide();
+    // $('.divcorp').hide();
+    // $('.divcliente').hide();
 
-    $('input[id="Corporativo"]').change(function () {
-      if ($("input[id=Corporativo][value='Sim']").prop("checked", true)) {
-        $('.divcorp').show();
-        $('.divcliente').hide();
-      }
-    });
+    // $('input[id="Corporativo"]').change(function () {
+    //   if ($("input[id=Corporativo][value='Sim']").prop("checked", true)) {
+    //     $('.divcorp').show();
+    //     $('.divcliente').hide();
+    //   }
+    // });
 
-    $('input[id="Cliente"]').change(function () {
-      if ($("input[id=Cliente][value='Sim']").prop("checked", true)) {
-        $('.divcliente').show();
-        $('.divcorp').hide();
-      }
-    });
+    // $('input[id="Cliente"]').change(function () {
+    //   if ($("input[id=Cliente][value='Sim']").prop("checked", true)) {
+    //     $('.divcliente').show();
+    //     $('.divcorp').hide();
+    //   }
+    // });
   }
 
 
@@ -96,16 +96,17 @@ export class EventoComponent implements OnInit {
           this.toastr.error('Erro ao cadastrar o evento!');
         }
       );
-    } else if (this.cadastrarEventoClienteForm.valid) {
-      this.evento = Object.assign(this.cadastrarEventoClienteForm.value);
-      this.authService.CadastrarEvento(this.evento).subscribe(
-        () => {
-          this.cadastrarEventoClienteForm.reset();
-          this.toastr.success('Evento cadastro com sucesso!');
-        }, error => {
-          this.toastr.error('Erro ao cadastrar o evento!');
-        }
-      );
+      // } else if (this.cadastrarEventoClienteForm.valid) {
+      //   this.evento = Object.assign(this.cadastrarEventoClienteForm.value);
+      //   this.authService.CadastrarEvento(this.evento).subscribe(
+      //     () => {
+      //       this.cadastrarEventoClienteForm.reset();
+      //       this.toastr.success('Evento cadastro com sucesso!');
+      //     }, error => {
+      //       this.toastr.error('Erro ao cadastrar o evento!');
+      //     }
+      //   );
     }
   }
+
 }

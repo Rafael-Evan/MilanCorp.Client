@@ -1,0 +1,28 @@
+<div class="container row">
+    <div class="col-10">
+        <h3>Lista de Ramais Milan</h3>
+        <form id="searchForm">
+                <div class="form-group">
+                    <div class="input-group" id="filterAll">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                      <input type="text" class="form-control" name="colab" (input)="Search()" placeholder="Pesquisar..." [(ngModel)]="colab">
+                    </div>
+                </div>
+            </form>
+        <table class="table table-sm table-responsive-sm table-hover">
+            <thead style="background-color:#2c77bd">
+                <tr>
+                    <th class="text-light" scope="col">COLABORADORES</th>
+                    <th class="text-light" scope="col">RAMAL</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ramais">
+                    <td>{{item.colaborador}}</td>
+                    <td>{{item.ramal}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

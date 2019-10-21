@@ -23,10 +23,9 @@ import { EventoComponent } from './evento/evento.component';
 import { DetalhesDaVendaComponent } from './vendas/materiais/detalhes-da-venda/detalhes-da-venda.component';
 import { AniversarianteComponent } from './aniversariante/aniversariante.component';
 import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.component';
-import { ClimaTempoComponent } from './clima-tempo/clima-tempo.component';
 import { FahrenheitPipe } from './fahrenheit.pipe';
 import { MomentPipe } from './moment.pipe';
-
+import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -43,9 +42,9 @@ import { MomentPipe } from './moment.pipe';
       DetalhesDaVendaComponent,
       AniversarianteComponent,
       SalaDeReuniaoComponent,
-      ClimaTempoComponent,
       FahrenheitPipe,
       MomentPipe,
+      ListaDeRamaisComponent,
    ],
    imports: [
       BrowserModule,

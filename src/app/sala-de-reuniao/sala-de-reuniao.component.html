@@ -19,8 +19,8 @@
                             <br>
                             <select class="custom-select" name="Departamentos" id="Departamentos"
                                 formControlName="departamento">
-                                <option *ngFor="let departamento of Departamentos" [value]="departamento.nome">
-                                    {{departamento.nome}}</option>
+                                <option *ngFor="let expiraEm of expira" [value]="expiraEm.dias">
+                                    {{expiraEm.nome}}</option>
                             </select>
                         </div>
                         <div class="col-6">
@@ -28,7 +28,7 @@
                             <br>
                             <select class="custom-select" name="SalaDeReuniao" id="SalaDeReuniao"
                                 formControlName="sala">
-                                <option *ngFor="let s of SalaDeReuniao" [value]="s.sala">
+                                <option *ngFor="let s of SalaDeReuniao" [value]="s.id">
                                     {{s.sala}}</option>
                             </select>
                         </div>
@@ -39,14 +39,14 @@
                             <br>
                             <select class="custom-select" name="LocalDaReuniao" id="LocalDaReuniao"
                                 formControlName="local">
-                                <option *ngFor="let local of LocalDaReuniao" [value]="local.nome">
+                                <option *ngFor="let local of LocalDaReuniao" [value]="local.id">
                                     {{local.nome}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="row col-md-12 mb-3">
                         <div class="col-12">
-                            <label for="validationDefault03">Data Inical</label>
+                            <label for="validationDefault03">Data</label>
                             <input type="date" formControlName="data" class="form-control" id="data" required>
                         </div>
                     </div>

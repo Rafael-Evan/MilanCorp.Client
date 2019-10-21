@@ -10,15 +10,17 @@
             <b><a style="color: rgb(81, 90, 100)">ADMINISTRATIVO</a></b>
             <ul class="text-justify">
                 <li><a routerLink="home">Home</a></li>
-                <li><a routerLink="aniversariante">Importar Dados</a></li>
+                <li *ngIf="userRole() === 'admin' || userRole() === 'G&G'"><a routerLink="aniversariante">Importar
+                        Aniversariantes</a></li>
                 <li><a routerLink="reuniao">Reserva das Salas</a></li>
-                <li><a routerLink="evento">Eventos</a></li>
-                <li><a routerLink="clima">Tempo</a></li>
+                <li *ngIf="userRole() === 'admin' || userRole() === 'Atendimento'"><a routerLink="evento">Eventos</a>
+                </li>
+                <li><a routerLink="lista-de-ramais-milan">Lista de Ramais</a></li>
             </ul>
             <b><a style="color: rgb(81, 90, 100)">MEUS LEILÕES</a></b>
             <ul class="text-justify">
                 <li><a routerLink="vendas/menu">Vendas</a></li>
-                <li><a href="#">Compras</a></li>
+                <li *ngIf="userRole() === 'admin'"><a href="#">Compras</a></li>
             </ul>
         </div>
     </div>
@@ -39,12 +41,13 @@
                 </button>
 
                 <div style="width: 1215px;height: 42px;" class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div *ngIf="loggedIn()" style="display: flow-root;" class="bmd-form-group bmd-collapse-inline col-md-3 offset-md-3">
+                    <div *ngIf="loggedIn()" style="display: flow-root;"
+                        class="bmd-form-group bmd-collapse-inline col-md-3 offset-md-3">
 
-                            <form class="example" action="action_page.php">
-                                    <input type="text" placeholder="Pesquisar" name="search">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
-                                  </form>
+                        <form class="example" action="action_page.php">
+                            <input type="text" placeholder="Pesquisar" name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
                     <ul *ngIf="loggedIn()" class="nav navbar-nav ml-auto">
                         <li class="nav-item">
@@ -56,9 +59,6 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <form class="col-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="exampleDropdownFormEmail1"
-                                                style="cursor: pointer">Perfil</label>
-                                            <br>
                                             <label for="exampleSair" (click)="logout()"
                                                 style="cursor: pointer">Sair</label>
                                         </div>

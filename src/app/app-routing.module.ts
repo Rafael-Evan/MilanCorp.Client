@@ -11,7 +11,7 @@ import { VendasMenuComponent } from './vendas/vendas-menu/vendas-menu.component'
 import { EventoComponent } from './evento/evento.component';
 import { AniversarianteComponent } from './aniversariante/aniversariante.component';
 import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.component';
-import { ClimaTempoComponent } from './clima-tempo/clima-tempo.component';
+import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
 
 
 const routes: Routes = [
@@ -32,9 +32,9 @@ const routes: Routes = [
   },
   { path: 'home', component: HomeComponent },
   {path: 'evento', component: EventoComponent},
+  {path: 'lista-de-ramais-milan', component: ListaDeRamaisComponent},
   {path: 'reuniao', component: SalaDeReuniaoComponent},
   {path: 'aniversariante', component: AniversarianteComponent},
-  {path: 'clima', component: ClimaTempoComponent},
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'user/login' }
 ];

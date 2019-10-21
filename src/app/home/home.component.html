@@ -6,32 +6,6 @@
         <br>
         <br>
         <!-- Modal -->
-        <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalhes do Evento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <dl class="row">
-                  <dt class="col-sm-5">Nome do Evento:</dt>
-                  <dd class="col-sm-7" id="title"></dd>
-
-                  <dt class="col-sm-5">Data Inicial:</dt>
-                  <dd class="col-sm-7" id="start"></dd>
-
-                  <dt class="col-sm-5">Data Final:</dt>
-                  <dd class="col-sm-7" id="end"></dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Modal -->
         <div class="modal fade" id="aniversariante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -44,8 +18,8 @@
               </div>
               <div class="modal-body">
                 <dl class="row">
-                  <dt class="col-sm-4">Nome Completo:</dt>
-                  <dd class="col-sm-8" id="title"></dd>
+                  <dt class="col-sm-5">Nome Completo:</dt>
+                  <dd class="col-sm-7" id="title"></dd>
 
                   <dt class="col-sm-5">Data De Nascimento:</dt>
                   <dd class="col-sm-7" id="start"></dd>
@@ -137,12 +111,69 @@
                 MINHAS SOLICITAÇÕES
               </div>
               <div class="card-body">
-                <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">01/08/2019</b> - Documentação Leilão Ford -
-                  Aprovada
-                </p>
+                <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-primary btn-sm"
+                  type="button" data-toggle="modal" data-target="#exampleModalCenter"><i
+                    class="fas fa-plus"></i></button>
                 <br>
-                <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">17/07/2019</b> - Aumento Ticket - Reprovada
-                </p>
+                <br>
+                <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">Nenhuma solicitação neste momento </b></p>
+                <br>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 ml-auto">
+            <div class="card">
+              <div class="card-header text-white" style="background-color:#051a4b">
+                TEMPO
+              </div>
+              <div id="c_c4a3830e198f4858adb591fac0589426" class="normal">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Adicionar Notificação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="notificacaoForm">
+                  <div class="row col-md-12 mb-3">
+                    <div class="col-12">
+                      <label for="validationDefault03">Assunto: </label>
+                      <textarea formControlName="assunto" class="form-control" id="exampleFormControlTextarea1"
+                        rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="row col-md-12 mb-3">
+                    <div class="col-8">
+                      <label for="validationDefault03">Data da Solicitação: </label>
+                      <input type="date" formControlName="DataDaSolicitacao" class="form-control" id="data" required>
+                    </div>
+                        <div class="col-4">
+                            <label for="validationDefault03">Expira Em: </label>
+                            <br>
+                            <select class="custom-select" name="expiraEm" id="expiraEm"
+                            formControlName="Expirar">
+                            <option *ngFor="let expiraEm of expira" [value]="expiraEm.dias">
+                                {{expiraEm.nome}}</option>
+                        </select>
+                        </div>
+                      </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                  style="background-color: #051a4b;border-radius: 10px;" (click)="cadastrarSolicitacao()">Adicionar
+                </button>
+                <button type="button" class="btn btn-secondary" style="border-radius: 10px;"
+                  data-dismiss="modal">Fechar</button>
               </div>
             </div>
           </div>

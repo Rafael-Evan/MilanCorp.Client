@@ -55,10 +55,10 @@ export class SalaDeReuniaoComponent implements OnInit {
       this.authService.AdicionarReuniao(this.reuniao).subscribe(
         () => {
           this.reservarSalaForm.reset();
-          this.toastr.success('Reunião cadastra com sucesso!');
+          this.toastr.success('Reunião cadastrada com sucesso!');
           // tslint:disable-next-line: no-unused-expression
         }, error => {
-          this.toastr.error('Já existe uma reunião nessa sala e horário!');
+          this.toastr.error('Existe uma reserva nesse horário!');
         });
     }
   }
