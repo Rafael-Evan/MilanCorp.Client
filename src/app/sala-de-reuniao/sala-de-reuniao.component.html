@@ -19,8 +19,8 @@
                             <br>
                             <select class="custom-select" name="Departamentos" id="Departamentos"
                                 formControlName="departamento">
-                                <option *ngFor="let expiraEm of expira" [value]="expiraEm.dias">
-                                    {{expiraEm.nome}}</option>
+                                <option *ngFor="let departamento of Departamentos" [value]="departamento.nome">
+                                    {{departamento.nome}}</option>
                             </select>
                         </div>
                         <div class="col-6">
