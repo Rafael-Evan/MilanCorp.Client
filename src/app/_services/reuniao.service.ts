@@ -57,6 +57,10 @@ export class ReuniaoService {
     calendar.render();
   }
 
+  ExcluirReuniao(id: any) {
+    return this.http.delete(`${this.baseUrl}/` + id);
+  }
+
   SalaDeReuniao() {
     return [
       { sala: 'São Paulo', andar: 'Térreo', id: 1 },

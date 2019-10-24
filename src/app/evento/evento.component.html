@@ -6,37 +6,6 @@
           CADASTRAR NOVO EVENTO
         </div>
         <br>
-        <!-- <div class="col-md-9 mb-4">
-          <br>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="Corporativo" name="radio" value="Sim">
-            <label class="form-check-label">Corporativo</label>
-          </div>
-          <div class="custom-check form-check-inline">
-            <input class="form-check-input" type="radio" id="Cliente" name="radio" value="Sim">
-            <label class="form-check-label">Cliente</label>
-          </div>
-        </div> -->
-        <!-- <form [formGroup]="cadastrarEventoClienteForm">
-          <div class="divcliente">
-            <div class="col-md-8 mb-4">
-              <label for="validationDefault03">Nome do Evento</label>
-              <input type="text" formControlName="title" class="form-control" id="title" required>
-            </div>
-            <div class="col-md-8 mb-4">
-              <label for="validationDefault02">Data Inicial</label>
-              <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
-            </div>
-            <div class="col-md-8 mb-4">
-              <label for="validationDefault02">Data Final</label>
-              <input type="datetime-local" formControlName="end" class="form-control" id="end" required>
-            </div>
-            <div class="col-md-8 mb-6">
-              <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-primary btn-sm"
-                (click)="cadastrarEvento()">Adicionar Evento</button>
-            </div>
-          </div>
-        </form> -->
         <form [formGroup]="cadastrarEventoCorpForm">
           <div class="divcorp">
             <div class="row col-md-12 mb-3">
@@ -55,9 +24,9 @@
               </div>
             </div>
             <div class="row col-md-12 mb-3">
-              <div class="col-6">
+              <div class="col-8">
                 <label for="validationDefault03">Data do Leilão</label>
-                <input type="date" formControlName="start" class="form-control" id="start" required>
+                <input type="datetime-local" formControlName="start" class="form-control" id="start" required>
               </div>
             </div>
             <div class="col-md-11 mb-3">

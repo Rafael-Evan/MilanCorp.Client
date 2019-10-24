@@ -35,8 +35,7 @@ const routes: Routes = [
   {path: 'lista-de-ramais-milan', component: ListaDeRamaisComponent},
   {path: 'reuniao', component: SalaDeReuniaoComponent},
   {path: 'aniversariante', component: AniversarianteComponent},
-  { path: '', redirectTo: 'user/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'user/login' }
+  { path: '', redirectTo: 'user/login', pathMatch: 'full' }
 ];
 
 @NgModule({

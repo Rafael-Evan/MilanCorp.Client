@@ -9,3 +9,24 @@
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 10px;
 }
+
+.visevent{
+    display: block;
+}
+
+.excluirEvento {
+    display: none;
+}
+
+.esconderRenuiao{
+    display: block;
+}
+
+.excluirReuniao {
+    display: none;
+}
+
+
+.formedit {
+    display: none;
+}

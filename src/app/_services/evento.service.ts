@@ -6,12 +6,17 @@ import brLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { environment } from 'src/environments/environment';
 import * as $ from 'jquery';
+import { FormBuilder, FormGroup } from '@angular/forms';
 declare var $: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
+  editarEventoCorpForm: FormGroup;
+
+  idEvento: any;
+
   private baseUrl = `${environment.apiUrl}evento`;
 
   private baseUrlEventoLeilao = `${environment.apiUrl}eventoleilao`;
@@ -20,8 +25,8 @@ export class EventoService {
 
   private baseUrlReunioes = `${environment.apiUrl}reuniao`;
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient
+    , public fb: FormBuilder) { }
 
   Eventos() {
     // tslint:disable-next-line: prefer-const
@@ -40,18 +45,27 @@ export class EventoService {
           // change the border color just for fun
           info.el.style.borderColor = 'black';
         } else if (info.event.extendedProps.nomeDoComitente != null && info.event.extendedProps.tipoDeLeilao != null) {
+          (<any>$("#leilao #id")).text(info.event.id);
           (<any>$("#leilao #title")).text(info.event.title);
           (<any>$("#leilao #start")).text(info.event.start != null ? info.event.start.toLocaleDateString() : '');
           (<any>$("#leilao #nomeDoComitente")).text(info.event.extendedProps.nomeDoComitente);
           (<any>$("#leilao #tipoDeLeilao")).text(info.event.extendedProps.tipoDeLeilao);
+          (<any>$("#leilao #title")).val(info.event.title);
+          (<any>$("#leilao #start")).val(info.event.start != null ? info.event.start.toLocaleString() : '');
+          (<any>$("#leilao #nomeDoComitente")).val(info.event.extendedProps.nomeDoComitente);
+          (<any>$("#leilao #tipoDeLeilao")).val(info.event.extendedProps.tipoDeLeilao);
+          (<any>$("#leilao #endereco")).val(info.event.extendedProps.endereco);
+           (<any>$("#leilao #observacao")).val(info.event.extendedProps.observacao);
           (<any>$("#leilao")).modal();
 
           // change the border color just for fun
           info.el.style.borderColor = 'black';
         } else if (info.event.extendedProps.departamento != null && info.event.extendedProps.sala != null) {
           let options = { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+          (<any>$("#reuniao #id")).val(info.event.id);
           (<any>$("#reuniao #title")).text(info.event.title);
           (<any>$("#reuniao #responsavel")).text(info.event.extendedProps.user.fullName);
+          (<any>$("#reuniao #userId")).text(info.event.extendedProps.user.id);
           (<any>$("#reuniao #departamento")).text(info.event.extendedProps.departamento);
           (<any>$("#reuniao #start")).text(info.event.start != null ? (info.event.start.toLocaleDateString('pt-BR', options)) : '');
           // tslint:disable-next-line: max-line-length
@@ -131,7 +145,7 @@ export class EventoService {
             alert('there was an error while fetching events!');
           },
           color: '#800080', // a non-ajax option
-          textColor: 'black'
+          textColor: 'white'
         },
       ]
     });
@@ -166,6 +180,15 @@ export class EventoService {
       ],
     });
     calendar.render();
+  }
+
+  EditarEvento(id: any, model: any) {
+    model.start = model.start.replace(/^(\d{0,2})\/(\d{0,2})(.*)/, '$2/$1$3');
+    return this.http.put(`${this.baseUrlEventoLeilao}/` + id, model);
+  }
+
+  CancelarEvento(id: any) {
+    return this.http.delete(`${this.baseUrlEventoLeilao}/` + id);
   }
 
   CadastrarEvento(model: any) {

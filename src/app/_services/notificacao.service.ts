@@ -16,6 +16,10 @@ export class NotificacaoService {
       .post(`${this.baseUrl}`, model);
   }
 
+  ListarNotificacoes() {
+    return this.http.get(`${this.baseUrl}`);
+  }
+
   ExpiraEm() {
     return [
       { nome: '5 Dias', dias: 5 },
