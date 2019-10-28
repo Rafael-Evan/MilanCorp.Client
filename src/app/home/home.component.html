@@ -60,7 +60,7 @@
               <div class="modal-body">
                 <!-- Formulario Edit -->
                 <div class="formedit">
-                  <form method="post" #frm="ngForm" (ngSubmit)="editar(frm)">
+                  <form #frm="ngForm">
                     <dl class="row">
                       <input type="hidden" name="id" class="form-control" id="id" [(ngModel)]="editarForm.id" required>
                       <dt class="col-sm-4">Nome do Leilão:</dt>
@@ -84,9 +84,9 @@
                       <input type="hidden" name="observacao" class="form-control" id="observacao"
                         [(ngModel)]="editarForm.observacao" required>
                     </dl>
-                    <button type="submit" style="background-color: #eead2d;border-radius: 10px;"
-                      class="btn btn-raised">Alterar</button>&nbsp;
                   </form>
+                  <button (click)="editar(frm)" type="submit" style="background-color: #eead2d;border-radius: 10px;"
+                  class="btn btn-raised">Alterar</button>&nbsp;
                   <button style="border-radius: 10px;" class="btn btn-raised btn-link"
                     (click)="slideFormEditLeilao()">Voltar</button>
                 </div>
@@ -117,7 +117,7 @@
                     <dt class="col-sm-12">Tem certeza que deseja excluir o leilão?</dt>
                   </dl>
                   <button style="background-color: darkred;border-radius: 10px;" class="btn btn-raised btn-light"
-                    (click)="cancelarLeilao()">Excluir</button>
+                    (click)="cancelarLeilao(this)">Excluir</button>
                   <button style="border-radius: 10px;" class="btn btn-raised btn-link"
                     (click)="slideFormexcluirLeilao()">Voltar</button>
                 </div>
@@ -170,7 +170,7 @@
                     <dt class="col-sm-12">Tem certeza que deseja excluir a Reunião?</dt>
                   </dl>
                   <button style="background-color: darkred;border-radius: 10px;" class="btn btn-raised btn-light"
-                    (click)="excluirReuniao()">Excluir</button>
+                    (click)="excluirReuniao(this)">Excluir</button>
                   <button style="border-radius: 10px;" class="btn btn-raised btn-link"
                     (click)="slideFormexcluirReuniao()">Voltar</button>
                 </div>

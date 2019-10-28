@@ -12,6 +12,7 @@ import { EventoComponent } from './evento/evento.component';
 import { AniversarianteComponent } from './aniversariante/aniversariante.component';
 import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.component';
 import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
+import { FeriasComponent } from './ferias/ferias.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'lista-de-ramais-milan', component: ListaDeRamaisComponent},
   {path: 'reuniao', component: SalaDeReuniaoComponent},
   {path: 'aniversariante', component: AniversarianteComponent},
+  {path: 'solicitacao-de-ferias', component: FeriasComponent},
   { path: '', redirectTo: 'user/login', pathMatch: 'full' }
 ];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { EventoService } from '../_services/evento.service';
 import { ReuniaoService } from '../_services/reuniao.service';
 import { FormBuilder, FormGroup } from '@angular/forms';

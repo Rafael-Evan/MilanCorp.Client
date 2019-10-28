@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="col-md-8 mb-6">
-                        <button style="background-color: #051a4b;border-radius: 10px;"
+                        <button [disabled]="!reservarSalaForm.valid" style="background-color: #051a4b;border-radius: 10px;"
                             class="btn btn-raised btn-success btn-sm" (click)="AdicionarReuniao()">Adicionar</button>
                     </div>
                 </form>

@@ -26,6 +26,7 @@ import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.compon
 import { FahrenheitPipe } from './fahrenheit.pipe';
 import { MomentPipe } from './moment.pipe';
 import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
+import { FeriasComponent } from './ferias/ferias.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -45,6 +46,7 @@ import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.compon
       FahrenheitPipe,
       MomentPipe,
       ListaDeRamaisComponent,
+      FeriasComponent,
    ],
    imports: [
       BrowserModule,

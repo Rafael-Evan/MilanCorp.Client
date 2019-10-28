@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MaterialService } from 'src/app/_services/material.service';
 import { ToastrService } from 'ngx-toastr';
 import { FileUpload } from 'src/app/_models/FileUpload';
-import Swal from 'sweetalert2';
+// import Swal from '/sweetalert2';
 import { Location } from '@angular/common';
 import { MilanxAuthService } from 'src/app/_services/milanx-auth.service';
 import { UploadService } from 'src/app/_services/upload.service';
@@ -145,20 +145,20 @@ export class MateriaisComponent implements OnInit {
                 element.UserId = dataUserName;
               });
               this.authService.CadastrarMaterial(this.material).subscribe(() => {
-                Swal.fire(
-                  'Finalizado!',
-                  'Venda finalizada com sucesso :)',
-                  'success'
-                );
-                location.reload();
-              }, error => {
-                Swal.fire(
-                  'Cancelado!',
-                  'Ocorreu um erro ao cadastrar a venda :(',
-                  'error'
-                ).finally(() => {
-                  location.reload();
-                });
+              //   Swal.fire(
+              //     'Finalizado!',
+              //     'Venda finalizada com sucesso :)',
+              //     'success'
+              //   );
+              //   location.reload();
+              // }, error => {
+              //   Swal.fire(
+              //     'Cancelado!',
+              //     'Ocorreu um erro ao cadastrar a venda :(',
+              //     'error'
+              //   ).finally(() => {
+              //     location.reload();
+              //   });
               });
               for (let i = 0; i < this.fieldArray.length; i++) {
                 this.deleteAll(i);

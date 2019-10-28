@@ -43,7 +43,11 @@ export class MilanxAuthService {
     let headers = new HttpHeaders();
     const body = JSON.stringify({UserName: userName});
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.http.post(`${this.baseUrl}/Id`, body, {headers});
+    return this.http.post(`${this.baseUrl}/`, body, {headers});
+  }
+
+  listarUsuarioPorId(id: any) {
+    return this.http.get(`${this.baseUrl}?Id=` + id);
   }
 
   loggedIn() {
