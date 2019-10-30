@@ -7,18 +7,18 @@
                     <h4 class="mb-0">FORMULÁRIO DE PROGRAMAÇÃO DE FÉRIAS</h4>
                 </div>
                 <div class="card-body" *ngIf="usuario">
-                    <form class="form" role="form" autocomplete="off">
+                    <form class="form" role="form" autocomplete="off" [formGroup]="solicitacaoDeFeriasForm">
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label form-control-label">Nome</label>
                             <div class="col-lg-7">
-                                <input class="form-control" type="text" value={{usuario.fullName}}>
+                                <input class="form-control" formControlName="nomeDoFuncionario" type="text" [(ngModel)]="usuario.fullName">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label form-control-label">Ramal</label>
                             <div class="col-lg-5">
                                 <select class="custom-select" name="ramais"
-                                    id="ramais" required>
+                                    id="ramais" formControlName="ramal" required>
                                     <option selected>Selecione um ramal...</option>
                                     <option *ngFor="let ramais of listaDeRamais" [value]="ramais.ramal">
                                         {{ramais.colaborador}}</option>
@@ -28,7 +28,7 @@
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label form-control-label">Cargo</label>
                             <div class="col-lg-7">
-                                <input class="form-control" type="text" value={{usuario.cargo}}>
+                                <input class="form-control" formControlName="cargo" type="text" [(ngModel)]="usuario.cargo">
                             </div>
                         </div>
                         <br />
@@ -39,30 +39,30 @@
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label form-control-label">Data Início</label>
                             <div class="col-lg-3">
-                                <input class="form-control" type="date" value="" id="dataInicio">
+                                <input class="form-control" type="date" formControlName="dataInicio" value="" id="dataInicio">
                             </div>
                             <label class="col-lg-2 col-form-label form-control-label">Data Fim</label>
                             <div class="col-lg-3">
-                                <input class="form-control" type="date" value="" id="dataFim" (blur)="CalcularDiasDeFerias()">
+                                <input class="form-control" type="date" formControlName="dataFim" value="" id="dataFim" (blur)="CalcularDiasDeFerias()">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label form-control-label">Nº Dias</label>
                             <div class="col-lg-3">
-                                <input class="form-control" type="text">
+                                <input class="form-control" formControlName="quantidadeDeDias" type="text" [(ngModel)]="totalDiasDeFerias">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label form-control-label">Observação</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="text" formControlName="observacao">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
                                 <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input style="background-color: #051a4b;" type="button"
+                                <input (click)="AdicionarSolicitacaoDeFerias()" style="background-color: #051a4b;" type="button"
                                     class="btn btn-primary btn btn-raised" value="Salvar">
                             </div>
                         </div>

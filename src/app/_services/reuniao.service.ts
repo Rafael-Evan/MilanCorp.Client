@@ -3,8 +3,6 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Calendar } from '@fullcalendar/core';
 import brLocale from '@fullcalendar/core/locales/pt-br';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
 @Injectable({

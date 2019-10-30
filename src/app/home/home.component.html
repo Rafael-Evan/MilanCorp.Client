@@ -86,7 +86,7 @@
                     </dl>
                   </form>
                   <button (click)="editar(frm)" type="submit" style="background-color: #eead2d;border-radius: 10px;"
-                  class="btn btn-raised">Alterar</button>&nbsp;
+                    class="btn btn-raised">Alterar</button>&nbsp;
                   <button style="border-radius: 10px;" class="btn btn-raised btn-link"
                     (click)="slideFormEditLeilao()">Voltar</button>
                 </div>
@@ -104,7 +104,7 @@
                     <dt class="col-sm-4">Data do Leilão</dt>
                     <dd class="col-sm-8" id="start"></dd>
                   </dl>
-                  <div *ngIf="userRole() === 'admin' || userRole() === 'Atendimento'">
+                  <div *ngIf="userRole === 'admin' || userRole === 'Atendimento'">
                     <button style="background-color: #eead2d;border-radius: 10px;" class="btn btn-raised btn-canc-vis"
                       (click)="slideFormEditLeilao()">Editar</button>&nbsp;
                     <button style="background-color: darkred;border-radius: 10px;" class="btn btn-raised btn-light"
@@ -197,12 +197,14 @@
                 MINHAS SOLICITAÇÕES
               </div>
               <div class="card-body">
-                <button style="background-color: #051a4b;border-radius: 10px;" class="btn btn-raised btn-primary btn-sm"
-                  type="button" data-toggle="modal" data-target="#exampleModalCenter"><i
-                    class="fas fa-plus"></i></button>
+                <div *ngIf="userRole === 'admin' || userRole === 'G&G'">
+                  <button style="background-color: #051a4b;border-radius: 10px;"
+                    class="btn btn-raised btn-primary btn-sm" type="button" data-toggle="modal"
+                    data-target="#exampleModalCenter"><i class="fas fa-plus"></i></button>
+                </div>
                 <br>
-                <br>
-                <div *ngIf="ListarNotificacoes == 0">
+                <div
+                  *ngIf="ListarNotificacoes == 0 && ListarSolicitacoesDeFerias == 0 && ListarSolicitacoesDeFerias == 0">
                   <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">Nenhuma solicitação neste momento </b></p>
                 </div>
                 <div *ngIf="ListarNotificacoes != 0">
@@ -212,7 +214,29 @@
                       </b>{{notificacao.assunto}}</p>&nbsp;
                   </div>
                 </div>
-                <br>
+                <div *ngIf="ListarSolicitacoesDeFerias != 0">
+                  <div *ngFor="let ferias of ListarSolicitacoesDeFerias;">
+                    <div *ngIf="ferias.status == 'Aguardando Retorno do RH' && userRole === 'G&G'">
+                      <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">Solicitação de Férias </b> -
+                        {{ferias.nomeDoFuncionario}}
+                        <br /> Data: {{ferias.dataInicio | date:'dd/MM/yyyy'}} Até
+                        {{ferias.dataFim | date:'dd/MM/yyyy'}}</p>&nbsp;
+                      <button class="btn btn-raised btn-success btn-sm"
+                        (click)="AtualizarSolicitacaoDeFerias(ferias.id, 'Aprovado')">Aceitar</button>&nbsp;
+                      <button class="btn btn-raised btn-danger btn-sm"
+                        (click)="AtualizarSolicitacaoDeFerias(ferias.id, 'Recusado')">Recusar</button>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="MinhasSolicitacoesDeFerias != 0">
+                  <div *ngFor="let MinhasNotificacao of MinhasSolicitacoesDeFerias;">
+                    <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">Minha Solicitação de Férias</b><br />
+                      {{MinhasNotificacao.ferias.nomeDoFuncionario}} - {{MinhasNotificacao.ferias.cargo}} <br/>
+                      <b style="color:rgb(10, 85, 197)">Período</b>: {{MinhasNotificacao.ferias.dataInicio | date:'dd/MM/yyyy'}} Até
+                      {{MinhasNotificacao.ferias.dataFim | date:'dd/MM/yyyy'}}
+                      <br /><b style="color:rgb(10, 85, 197)">Status</b>: {{MinhasNotificacao.ferias.status}}</p>&nbsp;
+                  </div>
+                </div>
               </div>
             </div>
           </div>

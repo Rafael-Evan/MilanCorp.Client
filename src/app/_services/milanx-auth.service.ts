@@ -55,4 +55,10 @@ export class MilanxAuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  userRole() {
+    const token = sessionStorage.getItem('token');
+    const decodeToken = this.jwtHelper.decodeToken(token);
+    return decodeToken.role;
+  }
+
 }

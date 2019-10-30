@@ -13,6 +13,7 @@ import { AniversarianteComponent } from './aniversariante/aniversariante.compone
 import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.component';
 import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
 import { FeriasComponent } from './ferias/ferias.component';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 
 const routes: Routes = [
@@ -22,6 +23,13 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
     ]
   },
+  { path: 'home', component: HomeComponent },
+  {path: 'evento', component: EventoComponent},
+  {path: 'lista-de-ramais-milan', component: ListaDeRamaisComponent},
+  {path: 'reuniao', component: SalaDeReuniaoComponent},
+  {path: 'aniversariante', component: AniversarianteComponent},
+  {path: 'solicitacao-de-ferias', component: FeriasComponent},
+  { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   {
     path: 'vendas', component: VendasComponent,
     children: [
@@ -31,17 +39,12 @@ const routes: Routes = [
       {path: 'materiais', component: MateriaisComponent}
     ]
   },
-  { path: 'home', component: HomeComponent },
-  {path: 'evento', component: EventoComponent},
-  {path: 'lista-de-ramais-milan', component: ListaDeRamaisComponent},
-  {path: 'reuniao', component: SalaDeReuniaoComponent},
-  {path: 'aniversariante', component: AniversarianteComponent},
-  {path: 'solicitacao-de-ferias', component: FeriasComponent},
-  { path: '', redirectTo: 'user/login', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   exports: [RouterModule]
+  
 })
 export class AppRoutingModule { }

@@ -6,6 +6,8 @@ import { NotificacaoService } from '../_services/notificacao.service';
 import { ToastrService } from 'ngx-toastr';
 import * as $ from 'jquery';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { FeriasService } from '../_services/ferias.service';
+import { MilanxAuthService } from '../_services/milanx-auth.service';
 
 @Component({
   selector: 'app-home',
@@ -20,23 +22,33 @@ export class HomeComponent implements OnInit {
   notificacaoForm: FormGroup;
   expira: any;
   ListarNotificacoes: any;
+  ListarSolicitacoesDeFerias: any;
   eventoLeilao: any;
   editarForm: any;
-
+  userRole: any;
+  MinhasSolicitacoesDeFerias: any;
 
   constructor(private EventoService: EventoService
     , private ReuniaoService: ReuniaoService
     , public fb: FormBuilder
     , private NotificacaoService: NotificacaoService
-    , private toastr: ToastrService) { }
+    , private toastr: ToastrService
+    , private FeriasService: FeriasService
+    , private AuthService: MilanxAuthService) { }
 
   ngOnInit() {
+
+    this.userRole = this.AuthService.userRole();
 
     this.editarForm = {};
 
     this.EventoService.Eventos();
 
     this.ListarAlertas();
+
+    this.MinhaSolicitacaoDeFerias();
+
+    this.ListarSolicitacaoDeFerias();
 
     this.expira = this.NotificacaoService.ExpiraEm();
 
@@ -61,6 +73,17 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  AtualizarSolicitacaoDeFerias(id: any, status: any) {
+    this.FeriasService.AtualizarStatusDaSolicitacao(id, status).subscribe(
+      data => {
+      this.toastr.success('Pedido de férias aprovado!');
+      window.location.reload();
+    }, error => {
+      this.toastr.error('Pedido de férias recusado!');
+      window.location.reload();
+    });
+  }
+
 
   editar(frm: FormGroup) {
     this.editarForm.id = (<any>$("#leilao #id")[0].innerText);
@@ -80,11 +103,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  userRole() {
+  MinhaSolicitacaoDeFerias() {
     const token = sessionStorage.getItem('token');
     const decodeToken = this.jwtHelper.decodeToken(token);
-    return decodeToken.role;
+    this.FeriasService.MinhaSolicitacaoDeFerias(decodeToken.nameid).subscribe(
+      (data => {
+        // tslint:disable-next-line: no-unused-expression
+        this.MinhasSolicitacoesDeFerias = data;
+      })
+      , error => {
+        console.log('Você não tem solicitação de ferias!');
+      }
+    );
   }
+
 
   VerificarPermissaoDeExcluirReuniao() {
     const token = sessionStorage.getItem('token');
@@ -134,6 +166,18 @@ export class HomeComponent implements OnInit {
   slideFormEditLeilao() {
     $('.formedit').slideToggle();
     $('.visevent').slideToggle();
+  }
+
+  ListarSolicitacaoDeFerias() {
+    this.FeriasService.ListarSolicitacaoDeFerias().subscribe(
+      (data => {
+        // tslint:disable-next-line: no-unused-expression
+        this.ListarSolicitacoesDeFerias = data;
+      })
+      , error => {
+        console.log('Erro ao carregar a lista de solicitações de férias!');
+      }
+    );
   }
 
   ListarAlertas() {
