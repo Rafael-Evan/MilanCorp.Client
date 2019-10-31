@@ -14,6 +14,7 @@ import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.compon
 import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
 import { FeriasComponent } from './ferias/ferias.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { RecebimentoComponent } from './recebimento/recebimento.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'reuniao', component: SalaDeReuniaoComponent},
   {path: 'aniversariante', component: AniversarianteComponent},
   {path: 'solicitacao-de-ferias', component: FeriasComponent},
+  {path: 'recebimento-e-correspondencia', component: RecebimentoComponent},
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   {
     path: 'vendas', component: VendasComponent,

@@ -18,7 +18,7 @@
                 <br>
                 <div class="input-group mb-3">
                   <select class="custom-select" name="ncomitente" id="ncomitente" formControlName="nomeDoComitente">
-                    <option *ngFor="let comitente of comitentes" [value]="comitente.nome">{{comitente.nome}}</option>
+                    <option *ngFor="let comitente of comitentes | orderBy:'nome'" [value]="comitente.nome">{{comitente.nome}}</option>
                   </select>
                 </div>
               </div>

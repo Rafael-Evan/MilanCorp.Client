@@ -8,7 +8,7 @@
               <img class="d-block w-100" src="assets/img/BEM-VINDO-INTRANET.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="assets/img/ford-EcoAzul-Banner.jpg" alt="Second slide">
+              <img class="d-block w-100" src="assets/img/NOVIDADE-TOTVS.jpg" alt="Second slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -104,7 +104,7 @@
                     <dt class="col-sm-4">Data do Leilão</dt>
                     <dd class="col-sm-8" id="start"></dd>
                   </dl>
-                  <div *ngIf="userRole === 'admin' || userRole === 'Atendimento'">
+                  <div *ngIf="userRole() === 'admin' || userRole() === 'Atendimento'">
                     <button style="background-color: #eead2d;border-radius: 10px;" class="btn btn-raised btn-canc-vis"
                       (click)="slideFormEditLeilao()">Editar</button>&nbsp;
                     <button style="background-color: darkred;border-radius: 10px;" class="btn btn-raised btn-light"
@@ -197,7 +197,7 @@
                 MINHAS SOLICITAÇÕES
               </div>
               <div class="card-body">
-                <div *ngIf="userRole === 'admin' || userRole === 'G&G'">
+                <div *ngIf="userRole() === 'admin' || userRole() === 'G&G'">
                   <button style="background-color: #051a4b;border-radius: 10px;"
                     class="btn btn-raised btn-primary btn-sm" type="button" data-toggle="modal"
                     data-target="#exampleModalCenter"><i class="fas fa-plus"></i></button>
@@ -216,7 +216,7 @@
                 </div>
                 <div *ngIf="ListarSolicitacoesDeFerias != 0">
                   <div *ngFor="let ferias of ListarSolicitacoesDeFerias;">
-                    <div *ngIf="ferias.status == 'Aguardando Retorno do RH' && userRole === 'G&G'">
+                    <div *ngIf="ferias.status == 'Aguardando Retorno do RH' && userRole() === 'G&G'">
                       <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">Solicitação de Férias </b> -
                         {{ferias.nomeDoFuncionario}}
                         <br /> Data: {{ferias.dataInicio | date:'dd/MM/yyyy'}} Até
@@ -237,6 +237,15 @@
                       <br /><b style="color:rgb(10, 85, 197)">Status</b>: {{MinhasNotificacao.ferias.status}}</p>&nbsp;
                   </div>
                 </div>
+                <div *ngIf="MeusRecebimentos != 0">
+                    <div *ngFor="let meusRecebidos of MeusRecebimentos;">
+                      <p class=" h6 card-text"><b style="color:rgb(40, 136, 123)">Recebimento de Correspondência</b><br />
+                        <b style="color:rgb(40, 136, 123)">Remetente</b>:  {{meusRecebidos.recebimentos.remetente}}
+                        <br /><b style="color:rgb(40, 136, 123)">Status</b>: {{meusRecebidos.recebimentos.status}}</p>
+                        <button class="btn btn-raised btn-primary btn-sm"
+                        (click)="AtualizarStatusDosMeusRecebimentos(meusRecebidos.recebimentos.id, 'Recebido')">Recebido</button>&nbsp;
+                    </div>
+                  </div>
               </div>
             </div>
           </div>

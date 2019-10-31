@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import * as $ from 'jquery';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FeriasService } from '../_services/ferias.service';
-import { MilanxAuthService } from '../_services/milanx-auth.service';
+import { RecebimentoService } from '../_services/recebimento.service';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
   ListarSolicitacoesDeFerias: any;
   eventoLeilao: any;
   editarForm: any;
-  userRole: any;
   MinhasSolicitacoesDeFerias: any;
+  MeusRecebimentos: any;
 
   constructor(private EventoService: EventoService
     , private ReuniaoService: ReuniaoService
@@ -34,12 +34,9 @@ export class HomeComponent implements OnInit {
     , private NotificacaoService: NotificacaoService
     , private toastr: ToastrService
     , private FeriasService: FeriasService
-    , private AuthService: MilanxAuthService) { }
+    , private recebimentoService: RecebimentoService) { }
 
   ngOnInit() {
-
-    this.userRole = this.AuthService.userRole();
-
     this.editarForm = {};
 
     this.EventoService.Eventos();
@@ -47,6 +44,8 @@ export class HomeComponent implements OnInit {
     this.ListarAlertas();
 
     this.MinhaSolicitacaoDeFerias();
+
+    this.ListarMeusRecebimentos();
 
     this.ListarSolicitacaoDeFerias();
 
@@ -73,15 +72,34 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  AtualizarStatusDosMeusRecebimentos(id: any, status: any) {
+    this.recebimentoService.AtualizarStatusDoRecebio(id, status).subscribe(
+      data => {
+        this.toastr.success('Correspondência recebida!');
+        setTimeout(function() {
+          window.location.reload(true);
+        }, 2000);
+      }, error => {
+        this.toastr.error('Erro ao receber a correspondência!');
+        setTimeout(function() {
+          window.location.reload(true);
+        }, 2000);
+      });
+  }
+
   AtualizarSolicitacaoDeFerias(id: any, status: any) {
     this.FeriasService.AtualizarStatusDaSolicitacao(id, status).subscribe(
       data => {
-      this.toastr.success('Pedido de férias aprovado!');
-      window.location.reload();
-    }, error => {
-      this.toastr.error('Pedido de férias recusado!');
-      window.location.reload();
-    });
+        this.toastr.success('Pedido de férias aprovado!');
+        setTimeout(function() {
+          window.location.reload(true);
+        }, 2000);
+      }, error => {
+        this.toastr.error('Pedido de férias recusado!');
+        setTimeout(function() {
+          window.location.reload(true);
+        }, 2000);
+      });
   }
 
 
@@ -113,6 +131,20 @@ export class HomeComponent implements OnInit {
       })
       , error => {
         console.log('Você não tem solicitação de ferias!');
+      }
+    );
+  }
+
+  ListarMeusRecebimentos() {
+    const token = sessionStorage.getItem('token');
+    const decodeToken = this.jwtHelper.decodeToken(token);
+    this.recebimentoService.ListarMeusRecebimentos(decodeToken.nameid).subscribe(
+      (data => {
+        // tslint:disable-next-line: no-unused-expression
+        this.MeusRecebimentos = data;
+      })
+      , error => {
+        console.log('Você não tem recebimentos de correspondência!');
       }
     );
   }
@@ -220,6 +252,12 @@ export class HomeComponent implements OnInit {
         }
       );
     }
+  }
+
+  userRole() {
+    const token = sessionStorage.getItem('token');
+    const decodeToken = this.jwtHelper.decodeToken(token);
+    return decodeToken.role;
   }
 
 }

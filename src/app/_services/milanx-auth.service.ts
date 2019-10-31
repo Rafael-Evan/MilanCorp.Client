@@ -28,6 +28,10 @@ export class MilanxAuthService {
       );
   }
 
+  GetUsers() {
+    return this.http.get(`${this.baseUrl}/ListarTodosUsuarios`);
+  }
+
   getNomeCompleto(id: number) {
     return this.http.get(`${this.baseUrl}/FullName/` + id);
   }
@@ -54,11 +58,4 @@ export class MilanxAuthService {
     const token = sessionStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
-
-  userRole() {
-    const token = sessionStorage.getItem('token');
-    const decodeToken = this.jwtHelper.decodeToken(token);
-    return decodeToken.role;
-  }
-
 }

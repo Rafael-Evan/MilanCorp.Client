@@ -87,10 +87,10 @@ export class EventoService {
       },
       locale: brLocale,
       defaultDate: new Date(),
-      navLinks: true, // can click day/week names to navigate views
+      navLinks: true,
       editable: true,
       selectable: true,
-      eventLimit: true,
+      eventLimit: 3,
       eventSources: [
         // your event source
         {

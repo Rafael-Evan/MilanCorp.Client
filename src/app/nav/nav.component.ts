@@ -15,7 +15,6 @@ export class NavComponent implements OnInit {
   user: any;
   jwtHelper = new JwtHelperService();
   usuario: any;
-  userRole: any;
 
   constructor(public authService: MilanxAuthService
     ,         public router: Router
@@ -23,16 +22,22 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userRole = this.authService.userRole();
-
     const token = sessionStorage.getItem('token');
     if (token != null) {
+      //Listando o usuário logado pelo id
       const decodeToken = this.jwtHelper.decodeToken(token);
       this.authService.listarUsuarioPorId(decodeToken.nameid).subscribe((dados) => {
         this.usuario = dados;
       });
     }
   }
+
+  userRole() {
+    const token = sessionStorage.getItem('token');
+    const decodeToken = this.jwtHelper.decodeToken(token);
+    return decodeToken.role;
+  }
+  
 
   loggedIn() {
     return this.authService.loggedIn();
@@ -44,8 +49,9 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/user/login']);
   }
 
-  userName() {
-    return sessionStorage.getItem('username');
+  UserName() {
+    const userName = sessionStorage.getItem('username');
+    return userName;
   }
 
 }

@@ -20,7 +20,7 @@
                                 <select class="custom-select" name="ramais"
                                     id="ramais" formControlName="ramal" required>
                                     <option selected>Selecione um ramal...</option>
-                                    <option *ngFor="let ramais of listaDeRamais" [value]="ramais.ramal">
+                                    <option *ngFor="let ramais of listaDeRamais | orderBy:'colaborador'" [value]="ramais.ramal">
                                         {{ramais.colaborador}}</option>
                                 </select>
                             </div>
@@ -62,7 +62,7 @@
                             <label class="col-lg-2 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
                                 <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input (click)="AdicionarSolicitacaoDeFerias()" style="background-color: #051a4b;" type="button"
+                                <input [disabled]="!solicitacaoDeFeriasForm.valid" (click)="AdicionarSolicitacaoDeFerias()" style="background-color: #051a4b;" type="button"
                                     class="btn btn-primary btn btn-raised" value="Salvar">
                             </div>
                         </div>

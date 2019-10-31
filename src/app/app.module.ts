@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { AniversarianteComponent } from './aniversariante/aniversariante.compone
 import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.component';
 import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
 import { FeriasComponent } from './ferias/ferias.component';
+import { RecebimentoComponent } from './recebimento/recebimento.component';
 
 @NgModule({
    declarations: [
@@ -44,9 +46,11 @@ import { FeriasComponent } from './ferias/ferias.component';
       SalaDeReuniaoComponent,
       ListaDeRamaisComponent,
       FeriasComponent,
+      RecebimentoComponent,
    ],
    imports: [
       BrowserModule,
+      OrderModule,
       BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
