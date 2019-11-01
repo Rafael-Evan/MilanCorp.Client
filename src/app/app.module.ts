@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { OrderModule } from 'ngx-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +55,7 @@ import { RecebimentoComponent } from './recebimento/recebimento.component';
       BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
+      Ng2SearchPipeModule,
       ToastrModule.forRoot({
          timeOut: 3000,
       }),

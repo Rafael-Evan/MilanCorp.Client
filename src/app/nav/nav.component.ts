@@ -15,6 +15,7 @@ export class NavComponent implements OnInit {
   user: any;
   jwtHelper = new JwtHelperService();
   usuario: any;
+  filter: string;
 
   constructor(public authService: MilanxAuthService
     ,         public router: Router
@@ -37,7 +38,6 @@ export class NavComponent implements OnInit {
     const decodeToken = this.jwtHelper.decodeToken(token);
     return decodeToken.role;
   }
-  
 
   loggedIn() {
     return this.authService.loggedIn();

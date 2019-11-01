@@ -248,10 +248,8 @@
                         <b style="color:rgb(40, 136, 123)">Remetente</b>: {{meusRecebidos.remetente}}
                         <br /><b style="color:rgb(40, 136, 123)">Status</b>: {{meusRecebidos.status}}
                         <br /><b style="color:rgb(40, 136, 123)">Funcionário</b>: {{meusRecebidos.user.fullName}}</p>
-                      <div *ngIf="userRole() == 'Recepcao'">
                         <button class="btn btn-raised btn-primary btn-sm"
-                          (click)="AtualizarStatusDosMeusRecebimentos(meusRecebidos.id, 'Recebido')">Entregue</button>&nbsp;
-                      </div>
+                          (click)="AtualizarStatusDosMeusRecebimentos(meusRecebidos.id, 'Recebido')">Recebido</button>&nbsp;
                     </div>
                   </div>
                 </div>

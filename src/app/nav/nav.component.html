@@ -46,10 +46,14 @@
                     <div *ngIf="loggedIn()" style="display: flow-root;"
                         class="bmd-form-group bmd-collapse-inline col-md-3 offset-md-3">
 
-                        <form class="example" action="action_page.php">
-                            <input type="text" placeholder="Pesquisar" name="search">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
+                        <!-- <form class="example">
+                            <input type="text" placeholder="Pesquisar" name="search" [(ngModel)]="filter">
+                            <button type="text"><i class="fa fa-search"></i></button>
+                        </form> -->
+
+                        <tr *ngFor="let user of usuario | filter:filter; let i = index">
+                            <td>{{user}}</td>
+                        </tr>
                     </div>
                     <ul *ngIf="loggedIn()" class="nav navbar-nav ml-auto">
                         <li class="nav-item">
