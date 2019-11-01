@@ -204,7 +204,7 @@
                 </div>
                 <br>
                 <div
-                  *ngIf="ListarNotificacoes == 0 && ListarSolicitacoesDeFerias == 0 && ListarSolicitacoesDeFerias == 0">
+                  *ngIf="ListarNotificacoes == 0 && ListarSolicitacoesDeFerias == 0 && ListarSolicitacoesDeFerias == 0 && MeusRecebimentos == 0">
                   <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">Nenhuma solicitação neste momento </b></p>
                 </div>
                 <div *ngIf="ListarNotificacoes != 0">
@@ -231,21 +231,30 @@
                 <div *ngIf="MinhasSolicitacoesDeFerias != 0">
                   <div *ngFor="let MinhasNotificacao of MinhasSolicitacoesDeFerias;">
                     <p class=" h6 card-text"><b style="color:rgb(10, 85, 197)">Minha Solicitação de Férias</b><br />
-                      {{MinhasNotificacao.ferias.nomeDoFuncionario}} - {{MinhasNotificacao.ferias.cargo}} <br/>
-                      <b style="color:rgb(10, 85, 197)">Período</b>: {{MinhasNotificacao.ferias.dataInicio | date:'dd/MM/yyyy'}} Até
+                      {{MinhasNotificacao.ferias.nomeDoFuncionario}} - {{MinhasNotificacao.ferias.cargo}} <br />
+                      <b style="color:rgb(10, 85, 197)">Período</b>:
+                      {{MinhasNotificacao.ferias.dataInicio | date:'dd/MM/yyyy'}} Até
                       {{MinhasNotificacao.ferias.dataFim | date:'dd/MM/yyyy'}}
-                      <br /><b style="color:rgb(10, 85, 197)">Status</b>: {{MinhasNotificacao.ferias.status}}</p>&nbsp;
+                      <br /><b style="color:rgb(10, 85, 197)">Status</b>: {{MinhasNotificacao.ferias.status}}</p>
+                    &nbsp;
                   </div>
                 </div>
                 <div *ngIf="MeusRecebimentos != 0">
-                    <div *ngFor="let meusRecebidos of MeusRecebimentos;">
-                      <p class=" h6 card-text"><b style="color:rgb(40, 136, 123)">Recebimento de Correspondência</b><br />
-                        <b style="color:rgb(40, 136, 123)">Remetente</b>:  {{meusRecebidos.recebimentos.remetente}}
-                        <br /><b style="color:rgb(40, 136, 123)">Status</b>: {{meusRecebidos.recebimentos.status}}</p>
+                  <div *ngFor="let meusRecebidos of MeusRecebimentos;">
+                    <div
+                      *ngIf="userRole() == 'Recepcao' && meusRecebidos.status == 'Aguardando Retirada'  || userId() == meusRecebidos.userId && meusRecebidos.status == 'Aguardando Retirada'">
+                      <p class=" h6 card-text"><b style="color:rgb(40, 136, 123)">Recebimento de
+                          Correspondência</b><br />
+                        <b style="color:rgb(40, 136, 123)">Remetente</b>: {{meusRecebidos.remetente}}
+                        <br /><b style="color:rgb(40, 136, 123)">Status</b>: {{meusRecebidos.status}}
+                        <br /><b style="color:rgb(40, 136, 123)">Funcionário</b>: {{meusRecebidos.user.fullName}}</p>
+                      <div *ngIf="userRole() == 'Recepcao'">
                         <button class="btn btn-raised btn-primary btn-sm"
-                        (click)="AtualizarStatusDosMeusRecebimentos(meusRecebidos.recebimentos.id, 'Recebido')">Recebido</button>&nbsp;
+                          (click)="AtualizarStatusDosMeusRecebimentos(meusRecebidos.id, 'Recebido')">Entregue</button>&nbsp;
+                      </div>
                     </div>
                   </div>
+                </div>
               </div>
             </div>
           </div>

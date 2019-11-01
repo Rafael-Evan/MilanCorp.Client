@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
     this.MinhaSolicitacaoDeFerias();
 
-    this.ListarMeusRecebimentos();
+    this.ListarRecebimentos();
 
     this.ListarSolicitacaoDeFerias();
 
@@ -135,10 +135,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  ListarMeusRecebimentos() {
-    const token = sessionStorage.getItem('token');
-    const decodeToken = this.jwtHelper.decodeToken(token);
-    this.recebimentoService.ListarMeusRecebimentos(decodeToken.nameid).subscribe(
+  ListarRecebimentos() {
+    this.recebimentoService.ListarRecebimentos().subscribe(
       (data => {
         // tslint:disable-next-line: no-unused-expression
         this.MeusRecebimentos = data;
@@ -148,6 +146,21 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+
+  // ListarMeusRecebimentos() {
+  //   const token = sessionStorage.getItem('token');
+  //   const decodeToken = this.jwtHelper.decodeToken(token);
+  //   this.recebimentoService.ListarMeusRecebimentos(decodeToken.nameid).subscribe(
+  //     (data => {
+  //       // tslint:disable-next-line: no-unused-expression
+  //       this.MeusRecebimentos = data;
+  //     })
+  //     , error => {
+  //       console.log('Você não tem recebimentos de correspondência!');
+  //     }
+  //   );
+  // }
 
 
   VerificarPermissaoDeExcluirReuniao() {
@@ -258,6 +271,12 @@ export class HomeComponent implements OnInit {
     const token = sessionStorage.getItem('token');
     const decodeToken = this.jwtHelper.decodeToken(token);
     return decodeToken.role;
+  }
+
+  userId() {
+    const token = sessionStorage.getItem('token');
+    const decodeToken = this.jwtHelper.decodeToken(token);
+    return decodeToken.nameid;
   }
 
 }

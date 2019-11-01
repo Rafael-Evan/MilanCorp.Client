@@ -16,10 +16,15 @@ export class RecebimentoService {
       .post(`${this.baseUrl}`, model);
   }
 
-  ListarMeusRecebimentos(id: any) {
-    return this.http
-      .get(`${this.baseUrl}/MeusRecebimentos?userId=` + id);
-  }
+  ListarRecebimentos() {
+       return this.http
+         .get(`${this.baseUrl}`);
+    }
+
+  // ListarMeusRecebimentos(id: any) {
+  //   return this.http
+  //     .get(`${this.baseUrl}/MeusRecebimentos?userId=` + id);
+  // }
 
   AtualizarStatusDoRecebio(id: any, status: any) {
     return this.http.put(`${this.baseUrl}?id=` + id + '&status=' +  status, status);
