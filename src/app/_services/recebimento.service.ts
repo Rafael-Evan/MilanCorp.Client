@@ -21,6 +21,11 @@ export class RecebimentoService {
          .get(`${this.baseUrl}`);
     }
 
+    ListarRecebimentosPorData(model: any) {
+      return this.http
+        .get(`${this.baseUrl}/PorData?data=` + model.data + '&userId=' + model.userId);
+   }
+
   // ListarMeusRecebimentos(id: any) {
   //   return this.http
   //     .get(`${this.baseUrl}/MeusRecebimentos?userId=` + id);

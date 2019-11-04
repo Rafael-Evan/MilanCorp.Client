@@ -217,4 +217,10 @@ export class EventoService {
     ]
   }
 
+  ListarEventoLeilaoPorData(model: any) {
+    return this.http
+      // tslint:disable-next-line: max-line-length
+      .get(`${this.baseUrlEventoLeilao}/PorData?dataInicial=` + model.dataInicial + '&dataFinal=' + model.dataFinal + '&nomeDoComitente=' + model.nomeDoComitente + '&tipoDeLeilao=' + model.tipoDeLeilao);
+ }
+
 }

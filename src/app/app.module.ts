@@ -28,6 +28,8 @@ import { SalaDeReuniaoComponent } from './sala-de-reuniao/sala-de-reuniao.compon
 import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.component';
 import { FeriasComponent } from './ferias/ferias.component';
 import { RecebimentoComponent } from './recebimento/recebimento.component';
+import { RelatorioDeLeilaoComponent } from './relatorio-de-leilao/relatorio-de-leilao.component';
+import { RelatorioDeRecebimentoComponent } from './relatorio-de-recebimento/relatorio-de-recebimento.component';
 
 @NgModule({
    declarations: [
@@ -48,6 +50,8 @@ import { RecebimentoComponent } from './recebimento/recebimento.component';
       ListaDeRamaisComponent,
       FeriasComponent,
       RecebimentoComponent,
+      RelatorioDeLeilaoComponent,
+      RelatorioDeRecebimentoComponent,
    ],
    imports: [
       BrowserModule,

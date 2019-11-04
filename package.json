@@ -30,6 +30,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-material-design": "^4.1.1",
     "jquery": "^3.4.1",
+    "jspdf": "^1.5.3",
     "moment": "^2.24.0",
     "ng2-search-filter": "^0.5.1",
     "ngx-order-pipe": "^2.0.4",

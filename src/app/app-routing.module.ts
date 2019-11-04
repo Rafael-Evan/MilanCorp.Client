@@ -15,6 +15,8 @@ import { ListaDeRamaisComponent } from './lista-de-ramais/lista-de-ramais.compon
 import { FeriasComponent } from './ferias/ferias.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { RecebimentoComponent } from './recebimento/recebimento.component';
+import { RelatorioDeRecebimentoComponent } from './relatorio-de-recebimento/relatorio-de-recebimento.component';
+import { RelatorioDeLeilaoComponent } from './relatorio-de-leilao/relatorio-de-leilao.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path: 'aniversariante', component: AniversarianteComponent},
   {path: 'solicitacao-de-ferias', component: FeriasComponent},
   {path: 'recebimento-e-correspondencia', component: RecebimentoComponent},
+  {path: 'relatorio-de-recebimento', component: RelatorioDeRecebimentoComponent},
+  {path: 'relatorio-de-leilao', component: RelatorioDeLeilaoComponent},
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   {
     path: 'vendas', component: VendasComponent,

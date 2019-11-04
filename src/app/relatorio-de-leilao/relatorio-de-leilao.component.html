@@ -1,0 +1,84 @@
+<div class="container">
+    <b style="color:rgb(10, 85, 197)">RELATÓRIO - LEILÃO</b>
+    <br>
+    <br>
+    <form [formGroup]="relatorioLeilaoForm">
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault03">Comitente</label>
+                <select class="custom-select" name="ncomitente" id="ncomitente" formControlName="nomeDoComitente">
+                    <option value="">Selecione um comitente</option>
+                    <option *ngFor="let comitente of comitentes | orderBy:'nome'" [value]="comitente.nome">
+                        {{comitente.nome}}</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault03">Tipo de Leilão</label>
+                <select class="custom-select" name="tipoDeLeilao" id="tipoDeLeilao" formControlName="tipoDeLeilao">
+                    <option value="">Selecione um tipo de leilão</option>
+                    <option *ngFor="let tipoLeilao of tipoDeLeilao" [value]="tipoLeilao.nome">{{tipoLeilao.nome}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Data Inicial*</label>
+                <input formControlName="dataInicial" class="form-control" type="date" id="newAttributedataEmissao"
+                    name="newAttributedataEmissao" required />
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Data Final*</label>
+                <input formControlName="dataFinal" class="form-control" type="date" id="newAttributedataEmissao"
+                    name="newAttributedataEmissao" required />
+            </div>
+            <br>
+            <div class="mb-6">
+                <br>&nbsp;<button style="background-color: #051a4b;border-radius: 10px;"
+                    class="btn btn-raised btn-primary btn-sm" type="button" (click)="pesquisarLeilao()"><i
+                        class="fas fa-search"></i></button>
+                &nbsp;<button style="border-radius: 10px;" class="btn btn-raised btn-danger btn-sm"
+                    (click)="deleteAll()">Limpar</button>
+            </div>
+            <div id="editor"></div>
+            <div class="col-12 text-center">
+                    <button style="border-radius: 10px;" class="btn btn-raised btn-sm btn-danger" id="btGerarPDF">
+                        <span class="far fa-file-pdf"> Gerar PDF</span></button>
+                </div>
+        </div>
+    </form>
+    <div id="conteudo">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-sm table-responsive-sm table-hover">
+                    <thead style="background-color:#2c77bd">
+                        <tr>
+                            <th class="text-light" scope="col">Leilão</th>
+                            <th class="text-light" scope="col">Data</th>
+                            <th class="text-light" scope="col">Comitente</th>
+                            <th class="text-light" scope="col">Endereço</th>
+                            <th class="text-light" scope="col">Tipo de Leilão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let field of fieldArray; let i = index">
+                            <td>
+                                {{field[i].title}}
+                            </td>
+                            <td>
+                                {{field[i].start  | date: 'dd/MM/yyyy'}}
+                            </td>
+                            <td>
+                                {{field[i].nomeDoComitente}}
+                            </td>
+                            <td>
+                                {{field[i].endereco}}
+                            </td>
+                            <td>
+                                {{field[i].tipoDeLeilao}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

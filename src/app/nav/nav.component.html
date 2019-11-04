@@ -16,8 +16,14 @@
                 <li *ngIf="userRole() === 'admin' || userRole() === 'Atendimento'"><a routerLink="evento">Eventos</a>
                 </li>
                 <li><a routerLink="solicitacao-de-ferias">Solicitação de Férias</a></li>
-                <li *ngIf="userRole() === 'admin' || userRole() === 'Recepcao'"><a routerLink="recebimento-e-correspondencia">Recebimentos</a></li>
+                <li *ngIf="userRole() === 'admin' || userRole() === 'Recepcao'"><a
+                        routerLink="recebimento-e-correspondencia">Recebimentos</a></li>
                 <li><a routerLink="lista-de-ramais-milan">Lista de Ramais</a></li>
+            </ul>
+            <b><a style="color: rgb(81, 90, 100)">RELATÓRIOS</a></b>
+            <ul class="text-justify">
+                <li *ngIf="userRole() === 'admin'"><a routerLink="relatorio-de-leilao">Leilões</a></li>
+                <li><a routerLink="relatorio-de-recebimento">Recebimentos</a></li>
             </ul>
             <b><a style="color: rgb(81, 90, 100)">MEUS LEILÕES</a></b>
             <ul class="text-justify">
