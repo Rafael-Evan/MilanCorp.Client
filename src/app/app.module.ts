@@ -30,6 +30,7 @@ import { FeriasComponent } from './ferias/ferias.component';
 import { RecebimentoComponent } from './recebimento/recebimento.component';
 import { RelatorioDeLeilaoComponent } from './relatorio-de-leilao/relatorio-de-leilao.component';
 import { RelatorioDeRecebimentoComponent } from './relatorio-de-recebimento/relatorio-de-recebimento.component';
+import { PortasAbertasComponent } from './portas-abertas/portas-abertas.component';
 
 @NgModule({
    declarations: [
@@ -52,6 +53,7 @@ import { RelatorioDeRecebimentoComponent } from './relatorio-de-recebimento/rela
       RecebimentoComponent,
       RelatorioDeLeilaoComponent,
       RelatorioDeRecebimentoComponent,
+      PortasAbertasComponent,
    ],
    imports: [
       BrowserModule,

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="mx-auto col-sm-8">
+            <!-- form user info -->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Sugestões de melhorias</h4>
+                </div>
+                <div class="card-body">
+                    <form class="form" role="form" autocomplete="off" [formGroup]="portasAbertasForm">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label form-control-label">Finalidade da Mensagem:</label>
+                            <div class="col-lg-5">
+                                <select class="custom-select" name="finalidade" id="finalidade" formControlName="finalidade" required>
+                                    <option *ngFor="let finalidade of finalidades | orderBy:'nome'" [value]="finalidade.nome">
+                                        {{finalidade.nome}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label form-control-label">Mensagem</label>
+                            <div class="col-lg-6">
+                                    <textarea formControlName="mensagem" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <input type="reset" class="btn btn-secondary" value="Cancel">
+                                <input [disabled]="!portasAbertasForm.valid"
+                                    style="background-color: #051a4b;" type="button"
+                                    class="btn btn-primary btn btn-raised" value="Enviar" (click)="EnviarSugestao()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /form user info -->
+        </div>
+    </div>
+</div>

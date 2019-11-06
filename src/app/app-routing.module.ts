@@ -17,6 +17,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { RecebimentoComponent } from './recebimento/recebimento.component';
 import { RelatorioDeRecebimentoComponent } from './relatorio-de-recebimento/relatorio-de-recebimento.component';
 import { RelatorioDeLeilaoComponent } from './relatorio-de-leilao/relatorio-de-leilao.component';
+import { PortasAbertasComponent } from './portas-abertas/portas-abertas.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'recebimento-e-correspondencia', component: RecebimentoComponent},
   {path: 'relatorio-de-recebimento', component: RelatorioDeRecebimentoComponent},
   {path: 'relatorio-de-leilao', component: RelatorioDeLeilaoComponent},
+  {path: 'portas-abertas', component: PortasAbertasComponent},
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   {
     path: 'vendas', component: VendasComponent,
